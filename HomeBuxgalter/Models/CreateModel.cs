@@ -6,4 +6,5 @@ public class CreateModel
     public DateTime Date { get; set; } = DateTime.Now;
     public string? Comment { get; set; }
     public required string Category { get; set; }
+    public bool IsProfit { get; set; }
 }
