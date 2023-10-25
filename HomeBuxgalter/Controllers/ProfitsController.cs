@@ -1,6 +1,8 @@
 ﻿using HomeBuxgalter.Entities;
+using HomeBuxgalter.Managers;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
+using HomeBuxgalter.Models.ProfitModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,13 +12,27 @@ namespace HomeBuxgalter.Controllers;
 [ApiController]
 public class ProfitsController : ControllerBase
 {
-    private readonly IProfitManager<Profit, CreateModel> _profitManager;
+    private readonly IProfitManager<Profit, CreateProfitModel> _profitManager;
 
-    public ProfitsController(IProfitManager<Profit, CreateModel> profitManager)
+    public ProfitsController(IProfitManager<Profit, CreateProfitModel> profitManager)
     {
         _profitManager = profitManager;
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateProfitModel createModel)
+    {
+        try
+        {
+            var id = await _profitManager.CreateAsync(createModel);
+            return Created("", new { Id = id });
+            
+        }
+        catch (Exception ex)
+        {
+            return BadRequest("Qayta urinib ko'ring");
+        }
+    }
     [HttpGet]
     public async Task<IActionResult> GetProfits()
     {

@@ -1,6 +1,8 @@
 ﻿using HomeBuxgalter.Entities;
+using HomeBuxgalter.Managers;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
+using HomeBuxgalter.Models.OutlayModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +12,25 @@ namespace HomeBuxgalter.Controllers;
 [ApiController]
 public class OutlaysController : ControllerBase
 {
-    private readonly IOutlayManager<Outlay, CreateModel> _outlayManager;
+    private readonly IOutlayManager<Outlay, CreateOutlayModel> _outlayManager;
 
-    public OutlaysController(IOutlayManager<Outlay, CreateModel> outlayManager)
+    public OutlaysController(IOutlayManager<Outlay, CreateOutlayModel> outlayManager)
     {
         _outlayManager = outlayManager;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateOutlayModel createModel)
+    {
+        try
+        {
+            var id = await _outlayManager.CreateAsync(createModel);
+            return Created("", new { Id = id });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest("Qayta urinib ko'ring");
+        }
     }
 
     [HttpGet]
