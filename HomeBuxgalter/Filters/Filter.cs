@@ -1,4 +1,6 @@
-﻿namespace HomeBuxgalter.Filters;
+﻿using HomeBuxgalter.Filters.Enums;
+
+namespace HomeBuxgalter.Filters;
 
 public class Filter
 {
@@ -7,4 +9,5 @@ public class Filter
     public long? EndAmount { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
+    public EBy ByWhichTime { get; set; }   
 }

@@ -1,4 +1,5 @@
 ﻿using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Repositories.Interfaces;
 
@@ -15,5 +16,8 @@ public class AccountingManager : IAccountingManager
         _outlayRepository = outlayRepository;
     }
 
-
+    public async Task<List<object>> GetReport(Filter filter)
+    {
+        List<object> reports 
+    }
 }
