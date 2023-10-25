@@ -20,7 +20,7 @@ public class AccountingManager : IAccountingManager
 
     public async Task<List<ReportModel>?> GetReport([FromQuery]Filter filter)
     {
-        ProfitFilter aqwe = new Filter();
+        Filter aqwe = new ProfitFilter();
         await _profitRepository.GetProfitsByFilter(filter);
     }
 }
