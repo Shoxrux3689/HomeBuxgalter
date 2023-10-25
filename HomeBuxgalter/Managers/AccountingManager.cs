@@ -1,7 +1,9 @@
 ﻿using HomeBuxgalter.Entities;
 using HomeBuxgalter.Filters;
 using HomeBuxgalter.Managers.Interfaces;
+using HomeBuxgalter.Models.ReportModels;
 using HomeBuxgalter.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HomeBuxgalter.Managers;
 
@@ -16,8 +18,9 @@ public class AccountingManager : IAccountingManager
         _outlayRepository = outlayRepository;
     }
 
-    public async Task<List<object>> GetReport(Filter filter)
+    public async Task<List<ReportModel>?> GetReport([FromQuery]Filter filter)
     {
-        List<object> reports 
+        ProfitFilter aqwe = new Filter();
+        await _profitRepository.GetProfitsByFilter(filter);
     }
 }

@@ -1,5 +1,5 @@
 ﻿namespace HomeBuxgalter.Filters;
 
-public class ProfitFilter
+public class ProfitFilter : Filter
 {
 }
