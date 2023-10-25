@@ -12,14 +12,10 @@ namespace HomeBuxgalter.Controllers;
 [ApiController]
 public class AccountingController : ControllerBase
 {
-    private readonly IOutlayManager<Outlay, CreateOutlayModel> _outlayManager;
-    private readonly IProfitManager<Profit, CreateProfitModel> _profitManager;
+    private readonly IAccountingManager _accountingManager;
 
-    public AccountingController(IOutlayManager<Outlay, CreateOutlayModel> outlayManager, IProfitManager<Profit, CreateProfitModel> profitManager)
+    public AccountingController(IAccountingManager accountingManager)
     {
-        _profitManager = profitManager;
-        _outlayManager = outlayManager;
+        _accountingManager = accountingManager;
     }
-
-
 }

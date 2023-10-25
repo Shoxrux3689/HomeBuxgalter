@@ -2,4 +2,5 @@
 
 public interface IProfitRepository<T> : IGenericRepository<T>
 {
+    Task<List<T>> GetProfitsByFilter(ProfitFilter profitFilter);
 }
