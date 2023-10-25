@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeBuxgalter.Repositories;
 
-public class OutlayRepositories : IOutlayRepository<Outlay>
+public class OutlayRepository : IOutlayRepository<Outlay>
 {
     private readonly AppDbContext _appDbContext;
 
-    public OutlayRepositories(AppDbContext appDbContext)
+    public OutlayRepository(AppDbContext appDbContext)
     {
         _appDbContext = appDbContext;
     }
