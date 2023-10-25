@@ -1,24 +1,38 @@
 ﻿using HomeBuxgalter.Entities;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
+using HomeBuxgalter.Repositories.Interfaces;
 
 namespace HomeBuxgalter.Managers;
 
 public class OutlayManager : IOutlayManager<Outlay, CreateModel>
 {
-    private readonly IOutlayRepository _outlayRepository;
-    public Task<int> CreateAsync(CreateModel entityDtoModel)
+    private readonly IOutlayRepository<Outlay> _outlayRepository;
+
+    public OutlayManager(IOutlayRepository<Outlay> outlayRepository)
     {
-        throw new NotImplementedException();
+        _outlayRepository = outlayRepository;
     }
 
-    public Task<List<Outlay>?> GetAllAsync()
+    public async Task<int> CreateAsync(CreateModel entityDtoModel)
     {
-        throw new NotImplementedException();
+        var outlay = new Outlay() {
+            Date = entityDtoModel.Date,
+            Amount = entityDtoModel.Amount,
+            Comment = entityDtoModel.Comment,
+        };
+        await _outlayRepository.AddAsync(outlay);
+        return outlay.Id;
     }
 
-    public Task<Outlay?> GetAsync(int id)
+    public async Task<List<Outlay>?> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var outlays = await _outlayRepository.GetAllAsync();
+        return outlays;
+    }
+
+    public async Task<Outlay?> GetAsync(int id)
+    {
+        return await _outlayRepository.GetAsync(id);
     }
 }
