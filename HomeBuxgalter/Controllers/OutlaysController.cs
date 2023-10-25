@@ -27,7 +27,7 @@ public class OutlaysController : ControllerBase
             var id = await _outlayManager.CreateAsync(createModel);
             return Created("", new { Id = id });
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return BadRequest("Qayta urinib ko'ring");
         }
@@ -41,7 +41,7 @@ public class OutlaysController : ControllerBase
             var outlays = await _outlayManager.GetAllAsync();
             return Ok(outlays);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return BadRequest("So'rovga javob topilmadi qayta urinib ko'ring");
         }
@@ -56,7 +56,7 @@ public class OutlaysController : ControllerBase
             return outlay == null ? NotFound("Bunday ma'lumot topilmadi") : Ok(outlay);
             
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return BadRequest("So'rovga javob topilmadi, qayta urinib ko'ring!");
         }

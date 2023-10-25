@@ -28,7 +28,7 @@ public class ProfitsController : ControllerBase
             return Created("", new { Id = id });
             
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return BadRequest("Qayta urinib ko'ring");
         }
@@ -41,7 +41,7 @@ public class ProfitsController : ControllerBase
             var profits = await _profitManager.GetAllAsync();
             return Ok(profits);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return BadRequest("So'rovga javob topilmadi, qayta urinib ko'ring!");
         }
@@ -55,7 +55,7 @@ public class ProfitsController : ControllerBase
             var profit = await _profitManager.GetAsync(id);
             return profit == null ? NotFound("Bunday ma'lumot topilmadi") : Ok(profit);
         }
-        catch(Exception ex)
+        catch(Exception)
         {
             return BadRequest("So'rovga javob topilmadi, qayta urinib ko'ring!");
         }
