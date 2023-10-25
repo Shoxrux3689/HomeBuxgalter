@@ -1,6 +1,6 @@
 ﻿namespace HomeBuxgalter.Entities.Enums;
 
-public enum Outlays
+public enum EOutlay
 {
     Products,
 }

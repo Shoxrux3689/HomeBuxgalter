@@ -1,11 +1,12 @@
 ﻿using HomeBuxgalter.Entities;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
+using HomeBuxgalter.Models.ProfitModels;
 using HomeBuxgalter.Repositories.Interfaces;
 
 namespace HomeBuxgalter.Managers;
 
-public class ProfitManager : IProfitManager<Profit, CreateModel>
+public class ProfitManager : IProfitManager<Profit, CreateProfitModel>
 {
     private readonly IProfitRepository<Profit> _profitRepository;
 
@@ -14,7 +15,7 @@ public class ProfitManager : IProfitManager<Profit, CreateModel>
         _profitRepository = profitRepository;
     }
 
-    public async Task<int> CreateAsync(CreateModel entityDtoModel)
+    public async Task<int> CreateAsync(CreateProfitModel entityDtoModel)
     {
         var profit = new Profit() 
         { 

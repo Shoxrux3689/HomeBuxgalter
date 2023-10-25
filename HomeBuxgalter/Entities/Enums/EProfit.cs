@@ -1,6 +1,6 @@
 ﻿namespace HomeBuxgalter.Entities.Enums;
 
-public enum Profits
+public enum EProfit
 {
-    Food,
+    ,
 }

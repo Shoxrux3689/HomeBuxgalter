@@ -1,11 +1,12 @@
 ﻿using HomeBuxgalter.Entities;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
+using HomeBuxgalter.Models.OutlayModels;
 using HomeBuxgalter.Repositories.Interfaces;
 
 namespace HomeBuxgalter.Managers;
 
-public class OutlayManager : IOutlayManager<Outlay, CreateModel>
+public class OutlayManager : IOutlayManager<Outlay, CreateOutlayModel>
 {
     private readonly IOutlayRepository<Outlay> _outlayRepository;
 
@@ -14,9 +15,10 @@ public class OutlayManager : IOutlayManager<Outlay, CreateModel>
         _outlayRepository = outlayRepository;
     }
 
-    public async Task<int> CreateAsync(CreateModel entityDtoModel)
+    public async Task<int> CreateAsync(CreateOutlayModel entityDtoModel)
     {
-        var outlay = new Outlay() {
+        var outlay = new Outlay() 
+        {
             Date = entityDtoModel.Date,
             Amount = entityDtoModel.Amount,
             Comment = entityDtoModel.Comment,
