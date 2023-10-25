@@ -1,4 +1,6 @@
-﻿namespace HomeBuxgalter.Repositories.Interfaces;
+﻿using HomeBuxgalter.Filters;
+
+namespace HomeBuxgalter.Repositories.Interfaces;
 
 public interface IProfitRepository<T> : IGenericRepository<T>
 {

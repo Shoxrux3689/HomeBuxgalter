@@ -1,5 +1,6 @@
 ﻿using HomeBuxgalter.Context;
 using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters;
 using HomeBuxgalter.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,9 +35,13 @@ public class OutlayRepository : IOutlayRepository<Outlay>
         return outlays;
     }
 
-    public async Task<Outlay?> GetAsync(int id)
+    public async Task<Outlay?> GetByIdAsync(int id)
     {
         return await _appDbContext.Outlays.FirstOrDefaultAsync(o => o.Id == id);
+    }
+
+    public Task<Outlay> GetOutlaysByFilter(OutlayFilter outlayFilter)
+    {
     }
 
     public async Task<bool> UpdateAsync(Outlay entity)

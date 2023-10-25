@@ -1,5 +1,6 @@
 ﻿using HomeBuxgalter.Context;
 using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters;
 using HomeBuxgalter.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +34,7 @@ public class ProfitRepository : IProfitRepository<Profit>
         return await _appDbContext.Profits.ToListAsync();
     }
 
-    public async Task<Profit?> GetAsync(int id)
+    public async Task<Profit?> GetByIdAsync(int id)
     {
         return await _appDbContext.Profits.FirstOrDefaultAsync(x => x.Id == id);
     }
@@ -43,5 +44,10 @@ public class ProfitRepository : IProfitRepository<Profit>
         _appDbContext.Profits.Update(entity);
         await _appDbContext.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<List<Profit>> GetProfitsByFilter(ProfitFilter profitFilter)
+    {
+
     }
 }
