@@ -34,7 +34,7 @@ public class AccountingController : ControllerBase
         }
         catch (Exception ex)
         {
-            throw new Exception("Qayta urinib ko'ring");
+            return BadRequest("Qayta urinib ko'ring");
         }
     }
 
