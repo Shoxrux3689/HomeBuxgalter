@@ -4,5 +4,5 @@ namespace HomeBuxgalter.Entities;
 
 public class Outlay : Entity
 {
-    public Outlays Category { get; set; }
+    public required string Category { get; set; }
 }

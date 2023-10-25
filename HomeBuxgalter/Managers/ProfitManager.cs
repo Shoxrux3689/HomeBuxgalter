@@ -21,6 +21,7 @@ public class ProfitManager : IProfitManager<Profit, CreateModel>
             Date = entityDtoModel.Date,
             Amount = entityDtoModel.Amount,
             Comment = entityDtoModel.Comment,
+            Category = entityDtoModel.Category,
         };
         await _profitRepository.AddAsync(profit);
         return profit.Id;

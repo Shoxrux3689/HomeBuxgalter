@@ -4,5 +4,5 @@ namespace HomeBuxgalter.Entities;
 
 public class Profit : Entity
 {
-    public Profits Category { get; set; }
+    public required string Category { get; set; }
 }
