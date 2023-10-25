@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeBuxgalter.Repositories;
 
-public class ProfitRepository : IGenericRepository<Profit>
+public class ProfitRepository : IProfitRepository<Profit>
 {
     private readonly AppDbContext _appDbContext;
 
