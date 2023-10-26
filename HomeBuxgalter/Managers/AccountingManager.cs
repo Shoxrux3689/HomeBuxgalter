@@ -18,9 +18,28 @@ public class AccountingManager : IAccountingManager
         _outlayRepository = outlayRepository;
     }
 
-    public async Task<List<ReportModel>?> GetReport([FromQuery]Filter filter)
+    public async Task<List<ReportModel>?> GetAccounting([FromQuery]Filter filter)
     {
-        Filter aqwe = new ProfitFilter();
-        await _profitRepository.GetProfitsByFilter(filter);
+        var profitFilter = new ProfitFilter()
+        {
+            CategoryName = filter.CategoryName,
+            StartAmount = filter.StartAmount,
+            EndAmount = filter.EndAmount,
+            StartDate = filter.StartDate ?? DateOnly.FromDateTime(DateTime.Now),
+            EndDate = filter.EndDate ?? DateOnly.FromDateTime(DateTime.Now),
+            ByWhichTime = filter.ByWhichTime,
+        };
+        var profits = await _profitRepository.GetProfitsByFilter(profitFilter);
+
+        var outlayFilter = new OutlayFilter()
+        {
+            CategoryName = filter.CategoryName,
+            StartAmount = filter.StartAmount,
+            EndAmount = filter.EndAmount,
+            StartDate = filter.StartDate ?? DateOnly.FromDateTime(DateTime.Now),
+            EndDate = filter.EndDate ?? DateOnly.FromDateTime(DateTime.Now),
+            ByWhichTime = filter.ByWhichTime,
+        };
+        var outlays = await _outlayRepository.GetOutlaysByFilter(outlayFilter);
     }
 }

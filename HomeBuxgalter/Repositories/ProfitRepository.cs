@@ -48,6 +48,6 @@ public class ProfitRepository : IProfitRepository<Profit>
 
     public async Task<List<Profit>> GetProfitsByFilter(ProfitFilter profitFilter)
     {
-
+        _appDbContext.Profits.Where(p => p.Date.Month == 2);
     }
 }
