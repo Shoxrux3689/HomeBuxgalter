@@ -40,11 +40,19 @@ public class OutlayRepository : IOutlayRepository<Outlay>
         return await _appDbContext.Outlays.FirstOrDefaultAsync(o => o.Id == id);
     }
 
-    public Task<List<Outlay>> GetOutlaysByFilter(OutlayFilter outlayFilter)
+    public async Task<List<Outlay>> GetOutlaysByFilter(OutlayFilter outlayFilter)
     {
         var query = _appDbContext.Outlays.AsQueryable();
         if (outlayFilter.StartAmount != null && outlayFilter.EndAmount != null)
-            query = query.Where(o => o.Amount >= outlayFilter.StartAmount && o.Amount <= outlayFilter.EndAmount)
+            query = query.Where(o => o.Amount >= outlayFilter.StartAmount && o.Amount <= outlayFilter.EndAmount);
+        if (outlayFilter.StartAmount != null && outlayFilter.EndAmount == null)
+            query = query.Where(o => o.Amount >= outlayFilter.StartAmount);
+        if (outlayFilter.StartAmount == null && outlayFilter.EndAmount != null)
+            query = query.Where(o => o.Amount <= outlayFilter.EndAmount);
+
+        query = query.Where(o => o.Date >= outlayFilter.StartDate && o.Date <= outlayFilter.EndDate);
+
+        return await query.ToListAsync();
     }
 
     public async Task<bool> UpdateAsync(Outlay entity)
