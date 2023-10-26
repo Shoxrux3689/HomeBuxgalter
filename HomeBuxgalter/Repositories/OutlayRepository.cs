@@ -40,7 +40,7 @@ public class OutlayRepository : IOutlayRepository<Outlay>
         return await _appDbContext.Outlays.FirstOrDefaultAsync(o => o.Id == id);
     }
 
-    public Task<Outlay> GetOutlaysByFilter(OutlayFilter outlayFilter)
+    public Task<List<Outlay>> GetOutlaysByFilter(OutlayFilter outlayFilter)
     {
     }
 

@@ -12,9 +12,9 @@ public class Filter
     [FromQuery]
     public long? EndAmount { get; set; }
     [FromQuery]
-    public DateOnly? StartDate { get; set; }
+    public DateTime StartDate { get; set; }
     [FromQuery]
-    public DateOnly? EndDate { get; set; }
+    public DateTime EndDate { get; set; }
     [FromQuery]
     public EBy ByWhichTime { get; set; }   
 }

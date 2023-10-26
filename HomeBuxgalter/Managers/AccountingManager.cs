@@ -1,5 +1,6 @@
 ﻿using HomeBuxgalter.Entities;
 using HomeBuxgalter.Filters;
+using HomeBuxgalter.Filters.Enums;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models.ReportModels;
 using HomeBuxgalter.Repositories.Interfaces;
@@ -20,13 +21,16 @@ public class AccountingManager : IAccountingManager
 
     public async Task<List<ReportModel>?> GetAccounting([FromQuery]Filter filter)
     {
+        if (filter.StartDate > filter.EndDate)
+            throw new Exception("Boshlanish sanasi tugash sanasidan katta bo'lib ketdi!");
+        
         var profitFilter = new ProfitFilter()
         {
             CategoryName = filter.CategoryName,
             StartAmount = filter.StartAmount,
             EndAmount = filter.EndAmount,
-            StartDate = filter.StartDate ?? DateOnly.FromDateTime(DateTime.Now),
-            EndDate = filter.EndDate ?? DateOnly.FromDateTime(DateTime.Now),
+            StartDate = filter.StartDate,
+            EndDate = filter.EndDate,
             ByWhichTime = filter.ByWhichTime,
         };
         var profits = await _profitRepository.GetProfitsByFilter(profitFilter);
@@ -36,10 +40,37 @@ public class AccountingManager : IAccountingManager
             CategoryName = filter.CategoryName,
             StartAmount = filter.StartAmount,
             EndAmount = filter.EndAmount,
-            StartDate = filter.StartDate ?? DateOnly.FromDateTime(DateTime.Now),
-            EndDate = filter.EndDate ?? DateOnly.FromDateTime(DateTime.Now),
+            StartDate = filter.StartDate,
+            EndDate = filter.EndDate,
             ByWhichTime = filter.ByWhichTime,
         };
         var outlays = await _outlayRepository.GetOutlaysByFilter(outlayFilter);
+        
+        if (filter.ByWhichTime == EBy.Day)
+        {
+            var reportModels = new List<ReportModel>();
+            var endMonth = filter.EndDate.Month;
+            var startMonth = filter.StartDate.Month;
+            for (int k = filter.StartDate.Year; k <= filter.EndDate.Year; k++)
+            {
+                var endMonth = filter.EndDate.Month < filter.StartDate.Month ? 12 : filter.EndDate.Month;
+                var startMonth = filter.StartDate.Month;
+                for (int j = startMonth; j <= endMonth; j++)
+                {
+                    for (int i = 1; i < DateTime.DaysInMonth(filter, j); i++)
+                    {
+                        var profitSum = profits.Where(p => p.Date.Day == i).Select(p => p.Amount).Sum();
+
+                        var outlaySum = outlays.Where(p => p.Date.Day == i).Select(p => p.Amount).Sum();
+
+                        var reportModel = new ReportModel();
+                        reportModel.Balance = profitSum - outlaySum;
+                        reportModel.OutlaySummary = outlaySum;
+                        reportModel.ProfitSummary = profitSum;
+                        reportModel.Date = filter.EndDate.Day - filt;
+                    }
+                }
+            }
+        }
     }
 }
