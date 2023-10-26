@@ -13,5 +13,4 @@ public class Filter
     public DateTime StartDate { get; set; }
     [FromQuery]
     public DateTime EndDate { get; set; }
-    [FromQuery]
 }

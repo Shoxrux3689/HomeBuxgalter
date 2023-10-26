@@ -43,7 +43,8 @@ public class OutlayRepository : IOutlayRepository<Outlay>
     public Task<List<Outlay>> GetOutlaysByFilter(OutlayFilter outlayFilter)
     {
         var query = _appDbContext.Outlays.AsQueryable();
-
+        if (outlayFilter.StartAmount != null && outlayFilter.EndAmount != null)
+            query = query.Where(o => o.Amount >= outlayFilter.StartAmount && o.Amount <= outlayFilter.EndAmount)
     }
 
     public async Task<bool> UpdateAsync(Outlay entity)

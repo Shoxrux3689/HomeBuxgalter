@@ -23,10 +23,11 @@ public class AccountingManager : IAccountingManager
     {
         if (filter.StartDate > filter.EndDate)
             throw new Exception("Boshlanish sanasi tugash sanasidan katta bo'lib ketdi!");
+        if (filter.StartAmount > filter.EndAmount)
+            throw new Exception("Boshlang'ich oraliq yakuniy oraliqdan katta");
         
         var profitFilter = new ProfitFilter()
         {
-            CategoryName = filter.CategoryName,
             StartAmount = filter.StartAmount,
             EndAmount = filter.EndAmount,
             StartDate = filter.StartDate,
@@ -36,7 +37,6 @@ public class AccountingManager : IAccountingManager
 
         var outlayFilter = new OutlayFilter()
         {
-            CategoryName = filter.CategoryName,
             StartAmount = filter.StartAmount,
             EndAmount = filter.EndAmount,
             StartDate = filter.StartDate,
