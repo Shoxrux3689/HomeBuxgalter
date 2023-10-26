@@ -1,4 +1,5 @@
 ﻿using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
 using HomeBuxgalter.Models.OutlayModels;
@@ -17,5 +18,19 @@ public class AccountingController : ControllerBase
     public AccountingController(IAccountingManager accountingManager)
     {
         _accountingManager = accountingManager;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAccounting([FromQuery] Filter filter)
+    {
+        try
+        {
+            var reportModels = await _accountingManager.GetAccounting(filter);
+            return Ok(reportModels);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
