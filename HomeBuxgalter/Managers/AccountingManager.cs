@@ -49,28 +49,37 @@ public class AccountingManager : IAccountingManager
         if (filter.ByWhichTime == EBy.Day)
         {
             var reportModels = new List<ReportModel>();
-            var endMonth = filter.EndDate.Month;
             var startMonth = filter.StartDate.Month;
             for (int k = filter.StartDate.Year; k <= filter.EndDate.Year; k++)
             {
-                var endMonth = filter.EndDate.Month < filter.StartDate.Month ? 12 : filter.EndDate.Month;
-                var startMonth = filter.StartDate.Month;
+                var endMonth = filter.EndDate.Month < startMonth ? 12 : filter.EndDate.Month;
                 for (int j = startMonth; j <= endMonth; j++)
                 {
-                    for (int i = 1; i < DateTime.DaysInMonth(filter, j); i++)
+                    for (int i = 1; i < DateTime.DaysInMonth(k, j); i++)
                     {
-                        var profitSum = profits.Where(p => p.Date.Day == i).Select(p => p.Amount).Sum();
+                        var profitSum = profits
+                            .Where(p => p.Date.Day == i && p.Date.Month == j && p.Date.Year == k)
+                            .Select(p => p.Amount).Sum();
 
-                        var outlaySum = outlays.Where(p => p.Date.Day == i).Select(p => p.Amount).Sum();
+                        var outlaySum = outlays
+                            .Where(p => p.Date.Day == i && p.Date.Month == j && p.Date.Year == k)
+                            .Select(p => p.Amount).Sum();
 
                         var reportModel = new ReportModel();
                         reportModel.Balance = profitSum - outlaySum;
                         reportModel.OutlaySummary = outlaySum;
                         reportModel.ProfitSummary = profitSum;
-                        reportModel.Date = filter.EndDate.Day - filt;
+                        reportModel.Date = DateTime.Parse($"{j}/{i}/{k}");
+                        reportModels.Add(reportModel);
                     }
                 }
+                startMonth = 1;
             }
         }
+        else if (filter.ByWhichTime == EBy.Month)
+        {
+
+        }
+        
     }
 }
