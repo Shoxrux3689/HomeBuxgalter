@@ -6,8 +6,6 @@ namespace HomeBuxgalter.Filters;
 public class Filter
 {
     [FromQuery]
-    public string? CategoryName { get; set; }
-    [FromQuery]
     public long? StartAmount { get; set; }
     [FromQuery]
     public long? EndAmount { get; set; }
@@ -16,5 +14,4 @@ public class Filter
     [FromQuery]
     public DateTime EndDate { get; set; }
     [FromQuery]
-    public EBy ByWhichTime { get; set; }   
 }

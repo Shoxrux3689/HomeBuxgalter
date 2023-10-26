@@ -5,5 +5,5 @@ namespace HomeBuxgalter.Managers.Interfaces;
 
 public interface IAccountingManager
 {
-    Task<List<ReportModel>?> GetAccounting(Filter filter);
+    Task<List<ReportModel>?> GetAccounting(AccountingFilter filter);
 }

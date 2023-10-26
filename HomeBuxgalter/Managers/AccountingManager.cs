@@ -19,7 +19,7 @@ public class AccountingManager : IAccountingManager
         _outlayRepository = outlayRepository;
     }
 
-    public async Task<List<ReportModel>?> GetAccounting(Filter filter)
+    public async Task<List<ReportModel>?> GetAccounting(AccountingFilter filter)
     {
         if (filter.StartDate > filter.EndDate)
             throw new Exception("Boshlanish sanasi tugash sanasidan katta bo'lib ketdi!");
@@ -31,7 +31,6 @@ public class AccountingManager : IAccountingManager
             EndAmount = filter.EndAmount,
             StartDate = filter.StartDate,
             EndDate = filter.EndDate,
-            ByWhichTime = filter.ByWhichTime,
         };
         var profits = await _profitRepository.GetProfitsByFilter(profitFilter);
 
@@ -42,7 +41,6 @@ public class AccountingManager : IAccountingManager
             EndAmount = filter.EndAmount,
             StartDate = filter.StartDate,
             EndDate = filter.EndDate,
-            ByWhichTime = filter.ByWhichTime,
         };
         var outlays = await _outlayRepository.GetOutlaysByFilter(outlayFilter);
 

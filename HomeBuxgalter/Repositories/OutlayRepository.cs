@@ -42,6 +42,8 @@ public class OutlayRepository : IOutlayRepository<Outlay>
 
     public Task<List<Outlay>> GetOutlaysByFilter(OutlayFilter outlayFilter)
     {
+        var query = _appDbContext.Outlays.AsQueryable();
+
     }
 
     public async Task<bool> UpdateAsync(Outlay entity)
