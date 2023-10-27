@@ -63,8 +63,14 @@ public class OutlaysController : ControllerBase
         }
     }
 
-    [HttpGet("enums")]
-    public async Task<IActionResult> GetEnumCategories()
+    [HttpGet("categories")]
+    public async Task<IActionResult> GetCategories()
+    {
+        return Ok();
+    }
+
+    [HttpPost("categories")]
+    public async Task<IActionResult> CreateCategory()
     {
         return Ok();
     }
