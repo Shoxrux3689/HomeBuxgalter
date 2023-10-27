@@ -1,7 +1,26 @@
-﻿@page "/profits"
+﻿@using HomeBuxgalterFront.Models;
+@inject HttpClient http
+@page "/profits"
 
 <h3>Profits</h3>
 
 @code {
-    
+	public Profit? Profit { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		var request = new HttpRequestMessage(HttpMethod.Get, "/api/profits/enums");
+
+		var response = await http.SendAsync(request);
+
+		var categories = await response.Content.ReadFromJsonAsync<List<string>>();
+
+		Profit = new Profit()
+		{
+			Date = DateTime.Now,
+			Category = categories[0] ?? "Quyidagilardan tanlang",
+		};
+	}
+
+
 }

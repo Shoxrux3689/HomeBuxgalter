@@ -30,6 +30,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
+app.UseCors(cors =>
+{
+    cors.AllowAnyOrigin()
+        .AllowAnyOrigin()
+        .AllowAnyMethod();
+});
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

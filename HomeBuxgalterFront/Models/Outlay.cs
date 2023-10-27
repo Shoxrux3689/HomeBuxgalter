@@ -8,3 +8,5 @@ public class Outlay
     public string? Comment { get; set; }
     public required string Category { get; set; }
 }
+
+

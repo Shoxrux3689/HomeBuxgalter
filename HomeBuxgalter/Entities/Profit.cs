@@ -1,6 +1,4 @@
-﻿using HomeBuxgalter.Entities.Enums;
-
-namespace HomeBuxgalter.Entities;
+﻿namespace HomeBuxgalter.Entities;
 
 public class Profit : Entity
 {

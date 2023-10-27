@@ -1,4 +1,5 @@
 ﻿using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters.Enums;
 using HomeBuxgalter.Managers;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
@@ -60,5 +61,11 @@ public class OutlaysController : ControllerBase
         {
             return BadRequest("So'rovga javob topilmadi, qayta urinib ko'ring!");
         }
+    }
+
+    [HttpGet("enums")]
+    public async Task<IActionResult> GetEnumCategories()
+    {
+        return Ok();
     }
 }
