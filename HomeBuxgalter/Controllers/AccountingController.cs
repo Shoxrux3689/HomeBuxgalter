@@ -21,7 +21,7 @@ public class AccountingController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAccounting([FromQuery] Filter filter)
+    public async Task<IActionResult> GetAccounting([FromQuery] AccountingFilter filter)
     {
         try
         {

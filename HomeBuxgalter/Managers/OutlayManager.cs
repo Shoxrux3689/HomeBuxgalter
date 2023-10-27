@@ -36,6 +36,6 @@ public class OutlayManager : IOutlayManager<Outlay, CreateOutlayModel>
 
     public async Task<Outlay?> GetAsync(int id)
     {
-        return await _outlayRepository.GetAsync(id);
+        return await _outlayRepository.GetByIdAsync(id);
     }
 }

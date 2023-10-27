@@ -19,6 +19,8 @@ builder.Services.AddScoped<IOutlayManager<Outlay, CreateOutlayModel>, OutlayMana
 builder.Services.AddScoped<IOutlayRepository<Outlay>, OutlayRepository>();
 builder.Services.AddScoped<IProfitManager<Profit, CreateProfitModel>, ProfitManager>();
 builder.Services.AddScoped<IProfitRepository<Profit>, ProfitRepository>();
+builder.Services.AddScoped<IAccountingManager, AccountingManager>();
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
