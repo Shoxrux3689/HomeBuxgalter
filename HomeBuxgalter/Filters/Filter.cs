@@ -6,7 +6,7 @@ namespace HomeBuxgalter.Filters;
 public class Filter
 {
     [FromQuery]
-    public long? StartAmount { get; set; }
+    public long StartAmount { get; set; }
     [FromQuery]
     public long? EndAmount { get; set; }
     [FromQuery]

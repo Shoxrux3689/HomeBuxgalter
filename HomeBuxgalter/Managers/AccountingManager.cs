@@ -62,7 +62,7 @@ public class AccountingManager : IAccountingManager
                     if (filter.EndDate.Month == j && filter.EndDate.Year == k && filter.EndDate.Day >= startDay)
                         endDay = filter.EndDate.Day;
 
-                    for (int i = startDay; i < endDay; i++)
+                    for (int i = startDay; i <= endDay; i++)
                     {
                         var profitSum = profits
                             .Where(p => p.Date.Day == i && p.Date.Month == j && p.Date.Year == k)
