@@ -1,0 +1,17 @@
+﻿@page "/create-outlay"
+@using HomeBuxgalterFront.Models.OutlayModels;
+@inject NavigationManager _navigationManager
+@inject HttpClient _http
+
+<h3>CreateOutlay</h3>
+
+@code {
+    private readonly CreateOutlayModel _createOutlayModel = new();
+
+    public async Task Create()
+    {
+        var response = await _http.PostAsJsonAsync("/api/outlays", _createOutlayModel);
+        if (response.IsSuccessStatusCode)
+            _navigationManager.NavigateTo("/outlays");
+    }
+}

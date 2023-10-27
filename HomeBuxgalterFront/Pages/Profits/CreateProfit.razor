@@ -1,6 +1,17 @@
 ﻿@page "/create-profit"
+@using HomeBuxgalterFront.Models.ProfitModels;
+@inject NavigationManager _navigationManager
+@inject HttpClient _http
+
 <h3>CreateProfit</h3>
 
 @code {
-     
+    private readonly CreateProfitModel _createProfitModel = new();
+
+    public async Task Create()
+    {
+        var response = await _http.PostAsJsonAsync("/api/outlays", _createProfitModel);
+        if (response.IsSuccessStatusCode)
+            _navigationManager.NavigateTo("/outlays");
+    }
 }
