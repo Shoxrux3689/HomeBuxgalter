@@ -20,9 +20,13 @@ public class RequestManager
 
         var response = await _httpClient.SendAsync(request);
 
-        var model = await response.Content.ReadFromJsonAsync<T?>();
+        T? model = await response.Content.ReadFromJsonAsync<T>();
 
         return model;
     }
 
+    public async Task<T?> Post<T>(string url)
+    {
+        return default;
+    }
 }
