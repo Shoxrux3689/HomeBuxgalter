@@ -60,4 +60,16 @@ public class ProfitsController : ControllerBase
             return BadRequest("So'rovga javob topilmadi, qayta urinib ko'ring!");
         }
     }
+
+	[HttpGet("categories")]
+	public async Task<IActionResult> GetCategories()
+	{
+		return Ok();
+	}
+
+	[HttpPost("categories")]
+	public async Task<IActionResult> CreateCategory()
+	{
+		return Ok();
+	}
 }
