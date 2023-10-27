@@ -28,8 +28,6 @@ public class AccountingManager : IAccountingManager
         
         var profitFilter = new ProfitFilter()
         {
-            StartAmount = filter.StartAmount,
-            EndAmount = filter.EndAmount,
             StartDate = filter.StartDate,
             EndDate = filter.EndDate,
         };
@@ -37,8 +35,6 @@ public class AccountingManager : IAccountingManager
 
         var outlayFilter = new OutlayFilter()
         {
-            StartAmount = filter.StartAmount,
-            EndAmount = filter.EndAmount,
             StartDate = filter.StartDate,
             EndDate = filter.EndDate,
         };
