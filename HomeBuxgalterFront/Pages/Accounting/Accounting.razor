@@ -1,7 +1,45 @@
 ﻿@page "/accounting"
+@using HomeBuxgalterFront.Managers;
+@using HomeBuxgalterFront.Models;
+@inject RequestManager _requestManager
 
 <h3>Accounting</h3>
 
-@code {
+@if (ReportModels == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Profits Summary</th>
+                    <th>Outlays Summary</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var model in ReportModels)
+            {
+                        <tr>
+                            <td>@model.Date.ToShortDateString()</td>
+                            <td>@model.ProfitSummary</td>
+                            <td>@model.OutlaySummary</td>
+                            <td>@model.Balance</td>
+                        </tr>
+            }
+            </tbody>
+        </table>
+}
 
+
+@code {
+    private List<ReportModel>? ReportModels { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        ReportModels = await _requestManager.Get<List<ReportModel>>();
+    }
 }
