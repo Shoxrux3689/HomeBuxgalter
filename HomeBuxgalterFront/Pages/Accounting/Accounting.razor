@@ -37,9 +37,9 @@ else
 
 @code {
     private List<ReportModel>? ReportModels { get; set; } = new();
-
+    private 
     protected override async Task OnInitializedAsync()
     {
-        ReportModels = await _requestManager.Get<List<ReportModel>>();
+        ReportModels = await _requestManager.Get<List<ReportModel>>("");
     }
 }

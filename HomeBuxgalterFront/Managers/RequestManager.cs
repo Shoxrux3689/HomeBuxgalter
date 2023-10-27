@@ -14,9 +14,9 @@ public class RequestManager
         _httpClient = httpClient;
     }
 
-    public async Task<T?> Get<T>()
+    public async Task<T?> Get<T>(string url)
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, "/api/profits");
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
 
         var response = await _httpClient.SendAsync(request);
 
@@ -24,4 +24,5 @@ public class RequestManager
 
         return model;
     }
+
 }
