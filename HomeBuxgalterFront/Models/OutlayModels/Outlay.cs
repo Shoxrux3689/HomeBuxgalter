@@ -1,6 +1,6 @@
-﻿namespace HomeBuxgalterFront.Models;
+﻿namespace HomeBuxgalterFront.Models.OutlayModels;
 
-public class Profit
+public class Outlay
 {
     public int Id { get; set; }
     public long Amount { get; set; }
@@ -8,3 +8,5 @@ public class Profit
     public string? Comment { get; set; }
     public required string Category { get; set; }
 }
+
+

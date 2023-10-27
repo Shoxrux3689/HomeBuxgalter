@@ -1,12 +1,9 @@
-﻿namespace HomeBuxgalterFront.Models;
+﻿namespace HomeBuxgalterFront.Models.ProfitModels;
 
-public class Outlay
+public class CreateProfitModel
 {
-    public int Id { get; set; }
     public long Amount { get; set; }
     public required DateTime Date { get; set; }
     public string? Comment { get; set; }
     public required string Category { get; set; }
 }
-
-

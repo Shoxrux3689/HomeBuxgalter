@@ -1,5 +1,8 @@
-﻿@using HomeBuxgalterFront.Models;
+﻿@    using HomeBuxgalterFront.Managers;
+@    using HomeBuxgalterFront.Models;
+    using HomeBuxgalterFront.Models.ProfitModels;
 @inject HttpClient http
+@inject RequestManager _requestManager
 @page "/profits"
 
 <h3>Profits</h3>
@@ -8,7 +11,8 @@
 {
     <p><em>Loading...</em></p>
 }
-else{
+else
+{
     <table class="table">
         <thead>
             <tr>
@@ -21,7 +25,7 @@ else{
         @foreach (var profit in ProfitList)
         {
                    <tr>
-                        <td>@profit.Date.ToShortDateString()</td>
+                        <td>@profit!.Date.ToShortDateString()</td>
                         <td>@profit.Category</td>
                         <td>@profit.Amount</td>
                    </tr>
@@ -35,10 +39,6 @@ else{
 
 	protected override async Task OnInitializedAsync()
 	{
-		var request = new HttpRequestMessage(HttpMethod.Get, "/api/profits");
-
-		var response = await http.SendAsync(request);
-
-		ProfitList = await response.Content.ReadFromJsonAsync<List<Profit?>?>();
+        ProfitList = await _requestManager.Get<List<Profit?>?>($"/api/profits");
 	}
 }
