@@ -36,6 +36,6 @@ public class ProfitManager : IProfitManager<Profit, CreateProfitModel>
 
     public async Task<Profit?> GetAsync(int id)
     {
-        return await _profitRepository.GetAsync(id);
+        return await _profitRepository.GetByIdAsync(id);
     }
 }
