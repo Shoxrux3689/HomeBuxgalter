@@ -5,11 +5,13 @@
 
 <h3>CreateOutlay</h3>
 
+
 @code {
     private readonly CreateOutlayModel _createOutlayModel = new();
 
     public async Task Create()
     {
+        //category null ketmasligi uchun tekshirib olish kerak
         var response = await _http.PostAsJsonAsync("/api/outlays", _createOutlayModel);
         if (response.IsSuccessStatusCode)
             _navigationManager.NavigateTo("/outlays");
