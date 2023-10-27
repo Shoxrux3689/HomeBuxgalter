@@ -1,4 +1,5 @@
 ﻿@page "/accounting"
+@using HomeBuxgalterFront.Filters;
 @using HomeBuxgalterFront.Managers;
 @using HomeBuxgalterFront.Models;
 @inject RequestManager _requestManager
@@ -37,9 +38,11 @@ else
 
 @code {
     private List<ReportModel>? ReportModels { get; set; } = new();
-    private 
+    private AccountingFilter AccountingFilter = new();
+
     protected override async Task OnInitializedAsync()
     {
-        ReportModels = await _requestManager.Get<List<ReportModel>>("");
+        ReportModels = await _requestManager.
+            Get<List<ReportModel>>($"/api/accounting?{AccountingFilter.ToString()}");
     }
 }

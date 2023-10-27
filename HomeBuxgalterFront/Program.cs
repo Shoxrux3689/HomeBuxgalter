@@ -1,4 +1,5 @@
 using HomeBuxgalterFront;
+using HomeBuxgalterFront.Managers;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -7,6 +8,6 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7799") });
-
+builder.Services.AddScoped<RequestManager>();
 
 await builder.Build().RunAsync();
