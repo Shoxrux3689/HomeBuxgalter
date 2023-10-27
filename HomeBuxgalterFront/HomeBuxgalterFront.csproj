@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Outlays\" />
     <Folder Include="Pages\Accounting\" />
   </ItemGroup>
 

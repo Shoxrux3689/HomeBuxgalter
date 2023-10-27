@@ -4,23 +4,41 @@
 
 <h3>Profits</h3>
 
+@if (ProfitList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var profit in ProfitList)
+        {
+                   <tr>
+                        <td>@profit.Date.ToShortDateString()</td>
+                        <td>@profit.Category</td>
+                        <td>@profit.Amount</td>
+                   </tr>
+        }
+        </tbody>
+    </table>
+}
+
 @code {
-	public Profit? Profit { get; set; }
+	private List<Profit?>? ProfitList { get; set; } = new();
 
 	protected override async Task OnInitializedAsync()
 	{
-		var request = new HttpRequestMessage(HttpMethod.Get, "/api/profits/enums");
+		var request = new HttpRequestMessage(HttpMethod.Get, "/api/profits");
 
 		var response = await http.SendAsync(request);
 
-		var categories = await response.Content.ReadFromJsonAsync<List<string>>();
-
-		Profit = new Profit()
-		{
-			Date = DateTime.Now,
-			Category = categories[0] ?? "Quyidagilardan tanlang",
-		};
+		ProfitList = await response.Content.ReadFromJsonAsync<List<Profit?>?>();
 	}
-
-
 }
