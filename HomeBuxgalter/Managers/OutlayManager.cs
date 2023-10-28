@@ -6,7 +6,7 @@ using HomeBuxgalter.Repositories.Interfaces;
 
 namespace HomeBuxgalter.Managers;
 
-public class OutlayManager : IOutlayManager<Outlay, CreateOutlayModel>
+public class OutlayManager : IOutlayManager<Outlay, CreateOutlayModel, int>
 {
     private readonly IOutlayRepository<Outlay, int> _outlayRepository;
 

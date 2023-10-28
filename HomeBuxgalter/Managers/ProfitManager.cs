@@ -6,7 +6,7 @@ using HomeBuxgalter.Repositories.Interfaces;
 
 namespace HomeBuxgalter.Managers;
 
-public class ProfitManager : IProfitManager<Profit, CreateProfitModel>
+public class ProfitManager : IProfitManager<Profit, CreateProfitModel, int>
 {
     private readonly IProfitRepository<Profit, int> _profitRepository;
 
