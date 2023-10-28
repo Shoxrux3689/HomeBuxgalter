@@ -16,11 +16,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IOutlayManager<Outlay, CreateOutlayModel>, OutlayManager>();
-builder.Services.AddScoped<IOutlayRepository<Outlay>, OutlayRepository>();
+builder.Services.AddScoped<IOutlayRepository<Outlay, int>, OutlayRepository>();
 builder.Services.AddScoped<IProfitManager<Profit, CreateProfitModel>, ProfitManager>();
-builder.Services.AddScoped<IProfitRepository<Profit>, ProfitRepository>();
+builder.Services.AddScoped<IProfitRepository<Profit, int>, ProfitRepository>();
 builder.Services.AddScoped<IAccountingManager, AccountingManager>();
-
+builder.Services.AddScoped<IGenericRepository<OutlayCategory, short>, OutlayCategoryRepository>();
+builder.Services.AddScoped<IGenericRepository<ProfitCategory, short>, ProfitCategoryRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

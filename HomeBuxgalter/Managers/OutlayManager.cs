@@ -8,9 +8,9 @@ namespace HomeBuxgalter.Managers;
 
 public class OutlayManager : IOutlayManager<Outlay, CreateOutlayModel>
 {
-    private readonly IOutlayRepository<Outlay> _outlayRepository;
+    private readonly IOutlayRepository<Outlay, int> _outlayRepository;
 
-    public OutlayManager(IOutlayRepository<Outlay> outlayRepository)
+    public OutlayManager(IOutlayRepository<Outlay, int> outlayRepository)
     {
         _outlayRepository = outlayRepository;
     }

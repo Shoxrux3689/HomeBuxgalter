@@ -8,9 +8,9 @@ namespace HomeBuxgalter.Managers;
 
 public class ProfitManager : IProfitManager<Profit, CreateProfitModel>
 {
-    private readonly IProfitRepository<Profit> _profitRepository;
+    private readonly IProfitRepository<Profit, int> _profitRepository;
 
-    public ProfitManager(IProfitRepository<Profit> profitRepository)
+    public ProfitManager(IProfitRepository<Profit, int> profitRepository)
     {
         _profitRepository = profitRepository;
     }
