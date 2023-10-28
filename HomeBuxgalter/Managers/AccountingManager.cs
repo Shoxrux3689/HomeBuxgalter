@@ -10,10 +10,10 @@ namespace HomeBuxgalter.Managers;
 
 public class AccountingManager : IAccountingManager
 {
-    private readonly IProfitRepository<Profit> _profitRepository;
-    private readonly IOutlayRepository<Outlay> _outlayRepository;
+    private readonly IProfitRepository<Profit, int> _profitRepository;
+    private readonly IOutlayRepository<Outlay, int> _outlayRepository;
 
-    public AccountingManager(IProfitRepository<Profit> profitRepository, IOutlayRepository<Outlay> outlayRepository)
+    public AccountingManager(IProfitRepository<Profit, int> profitRepository, IOutlayRepository<Outlay, int> outlayRepository)
     {
         _profitRepository = profitRepository;
         _outlayRepository = outlayRepository;

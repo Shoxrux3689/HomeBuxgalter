@@ -20,9 +20,9 @@ public class ProfitCategoryManager : IGenericManager<ProfitCategory, CreateProfi
         return await _profitCategoryRepository.AddAsync(profitCategory);
     }
 
-    public Task<List<ProfitCategory>?> GetAllAsync()
+    public async Task<List<ProfitCategory>?> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _profitCategoryRepository.GetAllAsync();
     }
 
     public Task<ProfitCategory?> GetAsync(int id)

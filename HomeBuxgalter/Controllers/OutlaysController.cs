@@ -13,9 +13,9 @@ namespace HomeBuxgalter.Controllers;
 [ApiController]
 public class OutlaysController : ControllerBase
 {
-    private readonly IOutlayManager<Outlay, CreateOutlayModel> _outlayManager;
+    private readonly IOutlayManager<Outlay, CreateOutlayModel, int> _outlayManager;
 
-    public OutlaysController(IOutlayManager<Outlay, CreateOutlayModel> outlayManager)
+    public OutlaysController(IOutlayManager<Outlay, CreateOutlayModel, int> outlayManager)
     {
         _outlayManager = outlayManager;
     }

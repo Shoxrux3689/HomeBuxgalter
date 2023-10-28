@@ -15,13 +15,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IOutlayManager<Outlay, CreateOutlayModel>, OutlayManager>();
+builder.Services.AddScoped<IOutlayManager<Outlay, CreateOutlayModel, int>, OutlayManager>();
 builder.Services.AddScoped<IOutlayRepository<Outlay, int>, OutlayRepository>();
-builder.Services.AddScoped<IProfitManager<Profit, CreateProfitModel>, ProfitManager>();
+builder.Services.AddScoped<IProfitManager<Profit, CreateProfitModel, int>, ProfitManager>();
 builder.Services.AddScoped<IProfitRepository<Profit, int>, ProfitRepository>();
 builder.Services.AddScoped<IAccountingManager, AccountingManager>();
 builder.Services.AddScoped<IGenericRepository<OutlayCategory, short>, OutlayCategoryRepository>();
 builder.Services.AddScoped<IGenericRepository<ProfitCategory, short>, ProfitCategoryRepository>();
+builder.Services.AddScoped<IGenericManager<OutlayCategory, CreateOutlayCategory, short>, OutlayCategoryManager>();
+builder.Services.AddScoped<IGenericManager<ProfitCategory, CreateProfitCategory, short>, ProfitCategoryManager>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

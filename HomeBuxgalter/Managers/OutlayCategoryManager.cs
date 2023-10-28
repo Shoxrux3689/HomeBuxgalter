@@ -1,19 +1,27 @@
 ﻿using HomeBuxgalter.Entities;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models.OutlayModels;
+using HomeBuxgalter.Repositories.Interfaces;
 
 namespace HomeBuxgalter.Managers;
 
 public class OutlayCategoryManager : IGenericManager<OutlayCategory, CreateOutlayCategory, short>
 {
-    public Task<short> CreateAsync(CreateOutlayCategory entityDtoModel)
+    private readonly IGenericRepository<OutlayCategory, short> _outlayCategoryRepository;
+
+    public OutlayCategoryManager(IGenericRepository<OutlayCategory, short> outlayCategoryRepository)
     {
-        throw new NotImplementedException();
+        _outlayCategoryRepository = outlayCategoryRepository;
     }
 
-    public Task<List<OutlayCategory>?> GetAllAsync()
+    public async Task<short> CreateAsync(CreateOutlayCategory entityDtoModel)
     {
-        throw new NotImplementedException();
+        return await _outlayCategoryRepository.AddAsync(new OutlayCategory() { Name = entityDtoModel.Name });
+    }
+
+    public async Task<List<OutlayCategory>?> GetAllAsync()
+    {
+        return await _outlayCategoryRepository.GetAllAsync();
     }
 
     public Task<OutlayCategory?> GetAsync(int id)

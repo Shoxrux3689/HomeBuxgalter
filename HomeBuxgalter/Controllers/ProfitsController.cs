@@ -12,9 +12,9 @@ namespace HomeBuxgalter.Controllers;
 [ApiController]
 public class ProfitsController : ControllerBase
 {
-    private readonly IProfitManager<Profit, CreateProfitModel> _profitManager;
+    private readonly IProfitManager<Profit, CreateProfitModel, int> _profitManager;
 
-    public ProfitsController(IProfitManager<Profit, CreateProfitModel> profitManager)
+    public ProfitsController(IProfitManager<Profit, CreateProfitModel, int> profitManager)
     {
         _profitManager = profitManager;
     }
