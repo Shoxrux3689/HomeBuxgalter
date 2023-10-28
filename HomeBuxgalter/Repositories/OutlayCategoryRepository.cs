@@ -1,10 +1,12 @@
 ﻿using HomeBuxgalter.Repositories.Interfaces;
 using HomeBuxgalter.Entities;
 using HomeBuxgalter.Context;
+using HomeBuxgalter.Models.OutlayModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeBuxgalter.Repositories;
 
-public class OutlayCategoryRepository : IGenericRepository<OutlayCategory>
+public class OutlayCategoryRepository : IGenericRepository<OutlayCategory, short>
 {
     private readonly AppDbContext _appDbContext;
 
@@ -13,9 +15,11 @@ public class OutlayCategoryRepository : IGenericRepository<OutlayCategory>
         _appDbContext = appDbContext;
     }
 
-    public Task<int> AddAsync(OutlayCategory entity)
+    public async Task<short> AddAsync(OutlayCategory entity)
     {
-
+        _appDbContext.OutlayCategories.Add(entity);
+        await _appDbContext.SaveChangesAsync();
+        return entity.Id;
     }
 
     public Task<bool> DeleteAsync(OutlayCategory entity)
@@ -23,9 +27,9 @@ public class OutlayCategoryRepository : IGenericRepository<OutlayCategory>
         throw new NotImplementedException();
     }
 
-    public Task<List<OutlayCategory>?> GetAllAsync()
+    public async Task<List<OutlayCategory>?> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _appDbContext.OutlayCategories.ToListAsync();
     }
 
     public Task<OutlayCategory?> GetByIdAsync(int id)

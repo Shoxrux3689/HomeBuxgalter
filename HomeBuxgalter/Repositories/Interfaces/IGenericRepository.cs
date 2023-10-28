@@ -1,8 +1,8 @@
 ﻿namespace HomeBuxgalter.Repositories.Interfaces;
 
-public interface IGenericRepository<T>
+public interface IGenericRepository<T, TId>
 {
-    Task<int> AddAsync(T entity);
+    Task<TId> AddAsync(T entity);
     Task<bool> UpdateAsync(T entity);
     Task<bool> DeleteAsync(T entity);
     Task<T?> GetByIdAsync(int id);

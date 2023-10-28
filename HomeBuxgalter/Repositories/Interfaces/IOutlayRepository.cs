@@ -2,7 +2,7 @@
 
 namespace HomeBuxgalter.Repositories.Interfaces;
 
-public interface IOutlayRepository<T> : IGenericRepository<T>
+public interface IOutlayRepository<T, TId> : IGenericRepository<T, TId>
 {
     Task<List<T>> GetOutlaysByFilter(OutlayFilter outlayFilter);
 }

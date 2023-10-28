@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeBuxgalter.Repositories;
 
-public class OutlayRepository : IOutlayRepository<Outlay>
+public class OutlayRepository : IOutlayRepository<Outlay, int>
 {
     private readonly AppDbContext _appDbContext;
 
