@@ -7,6 +7,8 @@ public class AppDbContext : DbContext
 {
     public DbSet<Outlay> Outlays { get; set; }
     public DbSet<Profit> Profits { get; set; }
+    public DbSet<OutlayCategory> OutlayCategories { get; set; }
+    public DbSet<ProfitCategory> ProfitsCategories { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 }
