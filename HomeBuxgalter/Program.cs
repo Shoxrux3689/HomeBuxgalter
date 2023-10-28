@@ -36,7 +36,7 @@ var app = builder.Build();
 app.UseCors(cors =>
 {
     cors.AllowAnyOrigin()
-        .AllowAnyOrigin()
+        .AllowAnyHeader()
         .AllowAnyMethod();
 });
 

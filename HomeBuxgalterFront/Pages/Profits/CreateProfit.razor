@@ -1,13 +1,21 @@
 ﻿@page "/create-profit"
+@using HomeBuxgalterFront.Managers;
 @using HomeBuxgalterFront.Models.ProfitModels;
 @inject NavigationManager _navigationManager
 @inject HttpClient _http
+@inject RequestManager _requestManager
 
 <h3>CreateProfit</h3>
-<h2>The select Element</h2>
+@{
+    if (Message != null)
+    {
+        <h3>@Message</h3>
+    }
+
+}
 
 <div>
-    <form>
+    <form >
         <label for="Date">Choose Date</label>
         <br />
         <input type="date" @bind-value="@_createProfitModel.Date"/>
@@ -15,13 +23,21 @@
         <label for="Amount">Enter Amount</label>
         <br />
         <input type="number" @bind-value="@_createProfitModel.Amount"/>
+
         <br />
         <label for="Category">Choose Category</label>
         <br />
-        <select name="Category">
-            <option value="Quyidagilardan tanlang">
-                Quyidagilardan tanlang
-            </option>
+
+        <select name="Category" @bind="@_createProfitModel.Category">
+        @{
+            if (_categories != null)
+            {
+                foreach (var category in _categories)
+                {
+                    <option value="@category.Name">@category.Name</option>
+                }
+            }
+        }
         </select>
         <br />
         <label for="Comment">Enter Comment</label>
@@ -29,7 +45,7 @@
         <input type="text" @bind-value="@_createProfitModel.Comment"/>
         <br />
 
-        <button type="submit" class="btn btn-primary" @onclick="Create">Create</button>
+        <button type="button" class="btn btn-primary" @onclick="Create">Create</button>
     </form>
 </div>
 
@@ -39,16 +55,24 @@
 
 @code {
     private readonly CreateProfitModel _createProfitModel = new();
-    private readonly List<ProfitCategory> _profitCategories = new();
+    private List<ProfitCategory>? _categories = new();
+    private string? Message { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _categories = await _requestManager.Get<List<ProfitCategory>>("/api/profits/categories");
+    }
 
     public async Task Create()
     {
-        var response = await _http.PostAsJsonAsync("/api/outlays", _createProfitModel);
+        var response = await _http.PostAsJsonAsync("/api/profits", _createProfitModel);
         if (response.IsSuccessStatusCode)
-            _navigationManager.NavigateTo("/outlays");
+            _navigationManager.NavigateTo("/profits");
+
+        //Message = await response.Content.ReadAsStringAsync();
     }
 
-    /*
+        /*
     <form>
         <label for="cars">Choose a car:</label>
         <select id="cars" name="cars">
