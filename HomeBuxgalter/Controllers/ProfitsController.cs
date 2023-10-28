@@ -13,10 +13,14 @@ namespace HomeBuxgalter.Controllers;
 public class ProfitsController : ControllerBase
 {
     private readonly IProfitManager<Profit, CreateProfitModel, int> _profitManager;
+    private readonly IGenericManager<ProfitCategory, CreateProfitCategory, short> _categoryManager;
 
-    public ProfitsController(IProfitManager<Profit, CreateProfitModel, int> profitManager)
+    public ProfitsController(
+        IProfitManager<Profit, CreateProfitModel, int> profitManager, 
+        IGenericManager<ProfitCategory, CreateProfitCategory, short> genericManager)
     {
         _profitManager = profitManager;
+        _categoryManager = genericManager;
     }
 
     [HttpPost]
@@ -64,12 +68,28 @@ public class ProfitsController : ControllerBase
 	[HttpGet("categories")]
 	public async Task<IActionResult> GetCategories()
 	{
-		return Ok();
+        try
+        {
+            var profitCategories = await _categoryManager.GetAllAsync();
+            return Ok(profitCategories);
+        }
+        catch
+        {
+            return BadRequest("Qayta urinib ko'ring");
+        }
 	}
 
 	[HttpPost("categories")]
-	public async Task<IActionResult> CreateCategory()
+	public async Task<IActionResult> CreateCategory([FromBody] CreateProfitCategory createProfitCategory) 
 	{
-		return Ok();
+        try
+        {
+            var id = await _categoryManager.CreateAsync(createProfitCategory);
+            return Ok(new {Id = id});
+        }
+        catch
+        {
+            return BadRequest("Qayta urinib ko'ring");
+        }
 	}
 }

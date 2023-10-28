@@ -14,10 +14,13 @@ namespace HomeBuxgalter.Controllers;
 public class OutlaysController : ControllerBase
 {
     private readonly IOutlayManager<Outlay, CreateOutlayModel, int> _outlayManager;
-
-    public OutlaysController(IOutlayManager<Outlay, CreateOutlayModel, int> outlayManager)
+    private readonly IGenericManager<OutlayCategory, CreateOutlayCategory, short> _categoryManager;
+    public OutlaysController(
+        IOutlayManager<Outlay, CreateOutlayModel, int> 
+        outlayManager, IGenericManager<OutlayCategory, CreateOutlayCategory, short> categoryManager)
     {
         _outlayManager = outlayManager;
+        _categoryManager = categoryManager;
     }
 
     [HttpPost]
@@ -66,12 +69,28 @@ public class OutlaysController : ControllerBase
     [HttpGet("categories")]
     public async Task<IActionResult> GetCategories()
     {
-        return Ok();
+        try
+        {
+            var outlayCategories = await _categoryManager.GetAllAsync();
+            return Ok(outlayCategories);
+        }
+        catch
+        {
+            return BadRequest("Qayta urinib ko'ring");
+        }
     }
 
     [HttpPost("categories")]
-    public async Task<IActionResult> CreateCategory()
+    public async Task<IActionResult> CreateCategory([FromBody] CreateOutlayCategory createOutlayCategory)
     {
-        return Ok();
+        try
+        {
+            var id = await _categoryManager.CreateAsync(createOutlayCategory);
+            return Ok(new {Id = id});
+        }
+        catch
+        {
+            return BadRequest("Qayta urinib ko'ring");
+        }
     }
 }
