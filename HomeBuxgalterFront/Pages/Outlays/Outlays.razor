@@ -1,12 +1,11 @@
-﻿@using HomeBuxgalterFront.Managers;
-@using HomeBuxgalterFront.Models.OutlayModels;
+﻿@using HomeBuxgalterFront.Models.OutlayModels;
 @inject HttpClient http
 @inject RequestManager _requestManager
 @page "/outlays"
 
 <h3>Outlays</h3>
 
-@if (OutlayList == null)
+@if (_outlayList == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -21,7 +20,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var profit in OutlayList)
+            @foreach (var profit in _outlayList)
             {
                 <tr>
                     <td>@profit!.Date.ToShortDateString()</td>
@@ -34,11 +33,11 @@ else
 }
 
 @code {
-    private List<Outlay?>? OutlayList { get; set; } = new();
+    private List<Outlay?>? _outlayList { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        OutlayList = await _requestManager.Get<List<Outlay?>?>($"/api/outlays");
+        _outlayList = await _requestManager.Get<List<Outlay?>?>($"/api/outlays");
     }
 }
 
