@@ -1,4 +1,4 @@
-﻿@page "/create-profit"
+﻿@page "/profits/create-profit"
 @inject NavigationManager _navigationManager
 @inject HttpClient _http
 @inject RequestManager _requestManager
@@ -6,41 +6,6 @@
 <h3>CreateProfit</h3>
 
 
-<div>
-    <form >
-        <label for="Date">Choose Date</label>
-        <br />
-        <input type="date" @bind-value="@_createProfitModel.Date"/>
-        <br />
-        <label for="Amount">Enter Amount</label>
-        <br />
-        <input type="number" @bind-value="@_createProfitModel.Amount"/>
-
-        <br />
-        <label for="Category">Choose Category</label>
-        <br />
-
-        <select id="Category" name="Category" @bind="@_createProfitModel.Category">
-            <option style="display: none">Choose...</option>
-        @{
-            if (_categories != null)
-            {
-                foreach (var category in _categories)
-                {
-                    <option value="@category.Name">@category.Name</option>
-                }
-            }
-        }
-        </select>
-        <br />
-        <label for="Comment">Enter Comment</label>
-        <br />
-        <input type="text" @bind-value="@_createProfitModel.Comment"/>
-        <br />
-
-        <button type="button" class="btn btn-primary" @onclick="Create">Create</button>
-    </form>
-</div>
 
 
 <div class="d-flex justify-content-center" style="flex-wrap:wrap;">
@@ -103,24 +68,42 @@
     }
 
 
-        /*
+/*
 
-    <EditForm Model="@_createProfitModel" OnSubmit="@Create">
-    <div class="form-group m-3">
-    <label for="Amount">Amount</label>
-    <InputNumber @bind-Value="@_createProfitModel.Amount"></InputNumber>
+<div>
+    <form >
+    <label for="Date">Choose Date</label>
+    <br />
+    <input type="date" @bind-value="@_createProfitModel.Date"/>
+    <br />
+    <label for="Amount">Enter Amount</label>
+    <br />
+    <input type="number" @bind-value="@_createProfitModel.Amount"/>
+
+    <br />
+    <label for="Category">Choose Category</label>
+    <br />
+
+    <select id="Category" name="Category" @bind="@_createProfitModel.Category">
+        <option style="display: none">Choose...</option>
+        @{
+        if (_categories != null)
+            {
+            foreach (var category in _categories)
+                {
+                <option value="@category.Name">@category.Name</option>
+    }
+    }
+    }
+    </select>
+    <br />
+    <label for="Comment">Enter Comment</label>
+    <br />
+    <input type="text" @bind-value="@_createProfitModel.Comment"/>
+    <br />
+
+    <button type="button" class="btn btn-primary" @onclick="Create">Create</button>
+    </form>
     </div>
-    <div class="form-group m-3">
-    <label for="Date">Due date:</label>
-    <InputDate @bind-Value="@_createProfitModel.Date"></InputDate>
-    </div>
-    <div class="form-group m-3">
-    <label for="Category">Complete:</label>
-    <InputText @bind-Value="@_createProfitModel.Category"></InputText>
-    </div>
-    <div class="form-group">
-    <button type="button" class="btn btn-primary" @onclick="@Create">Submit</button>
-    </div>
-</EditForm>
-    */
+*/
 }
