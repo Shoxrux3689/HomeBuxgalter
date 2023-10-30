@@ -5,16 +5,51 @@
 
 <h3>CreateCategory</h3>
 
+<div class="d-flex justify-content-center" style="flex-wrap:wrap;">
+    <div class="form-group row g-3 col-md-5" style="border-radius: 25px;
+    margin-top: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;">
+
+        <EditForm Model="@_createCategoryModel" OnValidSubmit="@Create">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <h1 class="col-12" style="text-align:center">Create</h1>
+
+            <label for="Name">Name</label>
+            <InputText placeholder="Name" class="form-control" @bind-Value="@_createCategoryModel.Name" />
+            @{
+                if (ErrorMessage)
+                {
+
+                    <label for="Comment" style="color: red">Comment is required</label>
+                    <InputText placeholder="Comment" class="form-control" @bind-Value="@_createCategoryModel.Name" />
+
+                }
+            }
+            <br />
+            <button type="submit" class="btn btn-primary" @onclick="Create">Create</button>
+            <br /><br />
+        </EditForm>
+    </div>
+</div>
+
 @code {
     private readonly CreateCategoryModel _createCategoryModel = new();
     private string? _message { get; set; }
+    private bool ErrorMessage { get; set; }
 
     public async Task Create()
     {
-        var response = await _http.PostAsJsonAsync("/api/profits/categories", _createCategoryModel);
-        if (response.IsSuccessStatusCode)
-            _navigationManager.NavigateTo("/profits/categories");
+        if (string.IsNullOrEmpty(_createCategoryModel.Name))
+            ErrorMessage = true;
+        else
+        {
+            var response = await _http.PostAsJsonAsync("/api/profits/categories", _createCategoryModel);
+            if (response.IsSuccessStatusCode)
+                _navigationManager.NavigateTo("/profits/categories");
 
-        _message = await response.Content.ReadAsStringAsync();
+            _message = await response.Content.ReadAsStringAsync();
+        }
     }
 }
