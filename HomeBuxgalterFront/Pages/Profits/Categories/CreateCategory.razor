@@ -1,5 +1,20 @@
-﻿<h3>CreateCategory</h3>
+﻿@page "/profits/categories/create-category"
+@inject RequestManager _requestManager
+@inject HttpClient _http
+@inject NavigationManager _navigationManager
+
+<h3>CreateCategory</h3>
 
 @code {
+    private readonly CreateCategoryModel _createCategoryModel = new();
+    private string? _message { get; set; }
 
+    public async Task Create()
+    {
+        var response = await _http.PostAsJsonAsync("/api/profits/categories", _createCategoryModel);
+        if (response.IsSuccessStatusCode)
+            _navigationManager.NavigateTo("/profits/categories");
+
+        _message = await response.Content.ReadAsStringAsync();
+    }
 }
