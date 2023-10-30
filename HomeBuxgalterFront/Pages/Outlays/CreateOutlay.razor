@@ -1,19 +1,68 @@
-﻿@page "/create-outlay"
+﻿@page "/outlays/create-outlay"
 @using HomeBuxgalterFront.Models.OutlayModels;
 @inject NavigationManager _navigationManager
 @inject HttpClient _http
+@inject RequestManager _requestManager
 
 <h3>CreateOutlay</h3>
 
 
+<div class="d-flex justify-content-center" style="flex-wrap:wrap;">
+    <div class="form-group row g-3 col-md-5" style="border-radius: 25px;
+    margin-top: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;">
+
+        <EditForm Model="@_createOutlayModel" OnValidSubmit="@Create">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <h1 class="col-12" style="text-align:center">Create</h1>
+
+            <label for="Amount">Amount</label>
+            <InputNumber placeholder="Amount" class="form-control" @bind-Value="@_createOutlayModel.Amount" />
+
+            <label for="Category">Category</label>
+            <InputSelect class="form-control" @bind-Value="@_createOutlayModel.Category">
+                <option style="display:none" >Choose...</option>
+            @{
+                if (_categories != null)
+                {
+                    foreach (var category in _categories)
+                    {
+                        <option value="@category.Name">@category.Name</option>
+                    }
+                }
+            }
+            </InputSelect>
+            <label for="Date">Date</label>
+            <InputDate placeholder="Date" class="form-control" @bind-Value="@_createOutlayModel.Date" />
+
+            <label for="Comment">Comment</label>
+            <InputText placeholder="Comment" class="form-control" @bind-Value="@_createOutlayModel.Comment" />
+
+            <br />
+            <button type="submit" class="btn btn-primary" @onclick="Create">Create</button>
+            <br /><br />
+        </EditForm>
+    </div>
+</div>
+
 @code {
     private readonly CreateOutlayModel _createOutlayModel = new();
+    private List<OutlayCategory>? _categories = new();
+    private string? _message { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _categories = await _requestManager.Get<List<OutlayCategory>>("/api/outlays/categories");
+    }
 
     public async Task Create()
     {
-        //category null ketmasligi uchun tekshirib olish kerak
         var response = await _http.PostAsJsonAsync("/api/outlays", _createOutlayModel);
         if (response.IsSuccessStatusCode)
             _navigationManager.NavigateTo("/outlays");
+            
+        _message = await response.Content.ReadAsStringAsync();
     }
 }
