@@ -1,4 +1,4 @@
-﻿namespace HomeBuxgalterFront.Models.ProfitModels;
+﻿namespace HomeBuxgalterFront.Models;
 
 public class CreateCategoryModel
 {

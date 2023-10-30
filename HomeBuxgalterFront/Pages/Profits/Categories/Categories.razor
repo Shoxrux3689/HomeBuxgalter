@@ -1,5 +1,39 @@
-﻿<h3>Categories</h3>
+﻿@inject HttpClient http
+@inject RequestManager _requestManager
+@page "/profits/categories"
+
+<h3>Categories</h3>
+
+@if (_profitCategories == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var profit in _profitCategories)
+            {
+                           <tr>
+                                <td>@profit!.Id</td>
+                                <td>@profit.Name</td>
+                           </tr>
+            }
+            </tbody>
+        </table>
+}
 
 @code {
+    private List<ProfitCategory?>? _profitCategories { get; set; } = new();
 
+    protected override async Task OnInitializedAsync()
+    {
+        _profitCategories = await _requestManager.Get<List<ProfitCategory?>?>($"/api/profits/categories");
+    }
 }

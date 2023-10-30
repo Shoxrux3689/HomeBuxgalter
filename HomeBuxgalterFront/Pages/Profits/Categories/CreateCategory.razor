@@ -1,4 +1,5 @@
 ﻿@page "/profits/categories/create-category"
+@using HomeBuxgalterFront.Models;
 @inject RequestManager _requestManager
 @inject HttpClient _http
 @inject NavigationManager _navigationManager
@@ -22,8 +23,8 @@
                 if (ErrorMessage)
                 {
 
-                    <label for="Comment" style="color: red">Comment is required</label>
-                    <InputText placeholder="Comment" class="form-control" @bind-Value="@_createCategoryModel.Name" />
+                    <label for="Name" style="color: red">Name is required</label>
+                    <InputText placeholder="Name" class="form-control" @bind-Value="@_createCategoryModel.Name" />
 
                 }
             }
