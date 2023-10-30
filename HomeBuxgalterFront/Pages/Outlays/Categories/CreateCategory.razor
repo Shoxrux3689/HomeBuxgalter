@@ -17,17 +17,9 @@
             <ValidationSummary />
             <h1 class="col-12" style="text-align:center">Create</h1>
 
-            <label for="Name">Name</label>
+            <label for="Name" style="color: @_color">Name is required</label>
             <InputText placeholder="Name" class="form-control" @bind-Value="@_createCategoryModel.Name" />
-            @{
-                if (ErrorMessage)
-                {
 
-                    <label for="Name" style="color: red">Name is required</label>
-                    <InputText placeholder="Name" class="form-control" @bind-Value="@_createCategoryModel.Name" />
-
-                }
-            }
             <br />
             <button type="submit" class="btn btn-primary" @onclick="Create">Create</button>
             <br /><br />
@@ -39,11 +31,12 @@
     private readonly CreateCategoryModel _createCategoryModel = new();
     private string? _message { get; set; }
     private bool ErrorMessage { get; set; }
+    private string _color = "green";
 
     public async Task Create()
     {
         if (string.IsNullOrEmpty(_createCategoryModel.Name))
-            ErrorMessage = true;
+            _color = "red";
         else
         {
             var response = await _http.PostAsJsonAsync("/api/outlays/categories", _createCategoryModel);
