@@ -4,13 +4,7 @@
 @inject RequestManager _requestManager
 
 <h3>CreateProfit</h3>
-@{
-    if (Message != null)
-    {
-        <h3>@Message</h3>
-    }
 
-}
 
 <div>
     <form >
@@ -26,7 +20,8 @@
         <label for="Category">Choose Category</label>
         <br />
 
-        <select name="Category" @bind="@_createProfitModel.Category">
+        <select id="Category" name="Category" @bind="@_createProfitModel.Category">
+            <option style="display: none">Choose...</option>
         @{
             if (_categories != null)
             {
@@ -48,13 +43,50 @@
 </div>
 
 
+<div class="d-flex justify-content-center" style="flex-wrap:wrap;">
+    <div class="form-group row g-3 col-md-5" style="border-radius: 25px;
+    margin-top: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;">
 
+        <EditForm Model="@_createProfitModel" OnValidSubmit="@Create">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <h1 class="col-12" style="text-align:center">Create</h1>
 
+            <label for="Amount">Amount</label>
+            <InputNumber placeholder="Amount" class="form-control" @bind-Value="@_createProfitModel.Amount" />
+
+            <label for="Category">Category</label>
+            <InputSelect class="form-control" @bind-Value="@_createProfitModel.Category">
+                <option style="display:none" >Choose...</option>
+            @{
+                if (_categories != null)
+                {
+                    foreach (var category in _categories)
+                    {
+                        <option value="@category.Name">@category.Name</option>
+                    }
+                }
+            }
+            </InputSelect>
+            <label for="Date">Date</label>
+            <InputDate placeholder="Date" class="form-control" @bind-Value="@_createProfitModel.Date" />
+
+            <label for="Comment">Comment</label>
+            <InputText placeholder="Comment" class="form-control" @bind-Value="@_createProfitModel.Comment" />
+
+            <br />
+            <button type="submit" class="btn btn-primary" @onclick="Create">Create</button>
+            <br /><br />
+        </EditForm>
+    </div>
+</div>
 
 @code {
     private readonly CreateProfitModel _createProfitModel = new();
     private List<ProfitCategory>? _categories = new();
-    private string? Message { get; set; }
+    private string? _message { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -66,19 +98,29 @@
         var response = await _http.PostAsJsonAsync("/api/profits", _createProfitModel);
         if (response.IsSuccessStatusCode)
             _navigationManager.NavigateTo("/profits");
-
-        //Message = await response.Content.ReadAsStringAsync();
+            
+        _message = await response.Content.ReadAsStringAsync();
     }
 
+
         /*
-    <form>
-        <label for="cars">Choose a car:</label>
-        <select id="cars" name="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="fiat">Fiat</option>
-            <option value="audi">Audi</option>
-        </select>
-        <input type="submit">
-    </form> */
+
+    <EditForm Model="@_createProfitModel" OnSubmit="@Create">
+    <div class="form-group m-3">
+    <label for="Amount">Amount</label>
+    <InputNumber @bind-Value="@_createProfitModel.Amount"></InputNumber>
+    </div>
+    <div class="form-group m-3">
+    <label for="Date">Due date:</label>
+    <InputDate @bind-Value="@_createProfitModel.Date"></InputDate>
+    </div>
+    <div class="form-group m-3">
+    <label for="Category">Complete:</label>
+    <InputText @bind-Value="@_createProfitModel.Category"></InputText>
+    </div>
+    <div class="form-group">
+    <button type="button" class="btn btn-primary" @onclick="@Create">Submit</button>
+    </div>
+</EditForm>
+    */
 }
