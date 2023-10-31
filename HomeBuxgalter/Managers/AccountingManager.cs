@@ -46,7 +46,7 @@ public class AccountingManager : IAccountingManager
 
             for (int k = filter.StartDate.Year; k <= filter.EndDate.Year; k++)
             {
-                var endMonth = filter.EndDate.Month < startMonth ? 12 : filter.EndDate.Month;
+                var endMonth = filter.EndDate.Month < startMonth && filter.EndDate.Year != k ? 12 : filter.EndDate.Month;
 
                 var startDay = filter.StartDate.Day;
 
@@ -99,7 +99,7 @@ public class AccountingManager : IAccountingManager
                     reportModel.Balance = profitSum - outlaySum;
                     reportModel.OutlaySummary = outlaySum;
                     reportModel.ProfitSummary = profitSum;
-                    reportModel.Date = DateTime.Parse($"{j}/{k}");
+                    reportModel.Date = DateTime.Parse($"{j}/{(filter.EndDate.Month == j && filter.EndDate.Year == k ? filter.EndDate.Day : DateTime.DaysInMonth(k, j))}/{k}");
                     reportModels.Add(reportModel);
                 }
                 startMonth = 1;
@@ -121,7 +121,7 @@ public class AccountingManager : IAccountingManager
                 reportModel.Balance = profitSum - outlaySum;
                 reportModel.OutlaySummary = outlaySum;
                 reportModel.ProfitSummary = profitSum;
-                reportModel.Date = DateTime.Parse($"1/{k}");
+                reportModel.Date = DateTime.Parse($"{(filter.EndDate.Year != k ? $"12/31/{k}" : filter.EndDate)}");
                 reportModels.Add(reportModel);
             }
         }
