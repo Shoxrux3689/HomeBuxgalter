@@ -1,0 +1,30 @@
+﻿/* Jadvalni kengligini sozlaymiz */
+.chiroyli-jadval {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    /* Jadval ustunlarini chiroyli qilamiz */
+    .chiroyli-jadval th {
+        background-color: #3498db;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        text-align: left;
+    }
+
+    /* Jadval ma'lumotlarini chiroyli qilamiz */
+    .chiroyli-jadval td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    /* To'g'ri qatordagi ma'lumotlarni chiroyli qilamiz */
+    .chiroyli-jadval tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* O'sish holatidagi qatordagi ma'lumotlarni chiroyli qilamiz */
+    .chiroyli-jadval tr:hover {
+        background-color: #e0e0e0;
+    }
