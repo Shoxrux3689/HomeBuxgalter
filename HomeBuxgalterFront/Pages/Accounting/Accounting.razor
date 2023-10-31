@@ -36,7 +36,7 @@ else
         else if (model.Balance > 0)
         {
             <tr>
-                <td>@model.Date.ToShortDateString()</td>
+                <td>@model.Date.ToString("dd.MM.yyyy")</td>
                 <td>@model.ProfitSummary</td>
                 <td>@model.OutlaySummary</td>
                 <td class="my-td">@model.Balance</td>

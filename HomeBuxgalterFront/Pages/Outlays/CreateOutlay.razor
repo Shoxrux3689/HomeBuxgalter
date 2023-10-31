@@ -19,7 +19,7 @@
         <EditForm Model="@_createOutlayModel" OnValidSubmit="@Create">
             <DataAnnotationsValidator />
             <ValidationSummary />
-            <h1 class="col-12" style="text-align:center; font-size:medium">Create</h1>
+            <h1 class="col-12" style="text-align:center">Create</h1>
 
             <label for="Amount">Amount</label>
             <InputNumber placeholder="Amount" class="form-control" @bind-Value="@_createOutlayModel.Amount" />
