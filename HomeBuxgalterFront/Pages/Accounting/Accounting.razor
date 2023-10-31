@@ -65,5 +65,6 @@ else
     {
         ReportModels = await _requestManager.
             Get<List<ReportModel>>($"/api/accounting?{AccountingFilter.ToString()}");
+        ReportModels = ReportModels?.OrderByDescending(r => r.Date).ToList();
     }
 }
