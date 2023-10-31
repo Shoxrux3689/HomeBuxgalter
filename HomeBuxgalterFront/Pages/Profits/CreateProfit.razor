@@ -3,7 +3,6 @@
 @inject HttpClient _http
 @inject RequestManager _requestManager
 
-<h3>CreateProfit</h3>
 
 <div style="text-align: right; margin-top:auto">
     <a class="btn btn-danger" href="/profits">Back</a>
@@ -18,7 +17,7 @@
         <EditForm Model="@_createProfitModel" OnValidSubmit="@Create">
             <DataAnnotationsValidator />
             <ValidationSummary />
-            <h1 class="col-12" style="text-align:center">Create</h1>
+            <h3 class="col-12" style="text-align:center">CreateProfit</h3>
 
             <label for="Amount">Amount</label>
             <InputNumber placeholder="Amount" class="form-control" style="" @bind-Value="@_createProfitModel.Amount" />
