@@ -4,19 +4,21 @@
     border-collapse: collapse;
 }
 
+
     /* Jadval ustunlarini chiroyli qilamiz */
     .chiroyli-jadval th {
-        background-color: #3498db;
+        background-color: #540561;
         color: white;
-        font-weight: bold;
+        font-weight: 600;
         padding: 10px;
-        text-align: left;
+        text-align: center;
     }
 
     /* Jadval ma'lumotlarini chiroyli qilamiz */
     .chiroyli-jadval td {
         padding: 10px;
         border: 1px solid #ccc;
+        text-align: center;
     }
 
     /* To'g'ri qatordagi ma'lumotlarni chiroyli qilamiz */
@@ -28,3 +30,14 @@
     .chiroyli-jadval tr:hover {
         background-color: #e0e0e0;
     }
+
+.my-td {
+    background-color:#0bdb1c;
+    color: white;
+    font-weight: 600;
+}
+.my-td-2 {
+    background-color: #e83131;
+    color: white;
+    font-weight: 600;
+}
