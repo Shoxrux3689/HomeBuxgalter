@@ -100,3 +100,6 @@ a, .btn-link {
         content: var(--blazor-load-percentage-text, "Loading");
     }
 
+.input-number-wrapper .increment, .input-number-wrapper .decrement {
+    display: none;
+}

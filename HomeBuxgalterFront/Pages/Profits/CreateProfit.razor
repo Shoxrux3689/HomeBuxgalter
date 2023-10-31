@@ -6,7 +6,7 @@
 <h3>CreateProfit</h3>
 
 <div style="text-align: right; margin-top:auto">
-    <a class="btn btn-danger" href="/outlays/create">Create</a>
+    <a class="btn btn-danger" href="/profits">Back</a>
 </div>
 
 <div class="d-flex justify-content-center" style="flex-wrap:wrap;">
@@ -21,7 +21,7 @@
             <h1 class="col-12" style="text-align:center">Create</h1>
 
             <label for="Amount">Amount</label>
-            <InputNumber placeholder="Amount" class="form-control" @bind-Value="@_createProfitModel.Amount" />
+            <InputNumber placeholder="Amount" class="form-control" style="" @bind-Value="@_createProfitModel.Amount" />
 
             <label for="Category">Category</label>
             <InputSelect class="form-control" @bind-Value="@_createProfitModel.Category">
