@@ -1,4 +1,5 @@
 ﻿using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
 using HomeBuxgalter.Models.OutlayModels;
@@ -28,9 +29,9 @@ public class OutlayManager : IOutlayManager<Outlay, CreateOutlayModel, int>
         return outlay.Id;
     }
 
-    public async Task<List<Outlay>?> GetAllAsync()
+    public async Task<List<Outlay>?> GetOutlaysAsync(OutlayFilter outlayFilter)
     {
-        var outlays = await _outlayRepository.GetAllAsync();
+        var outlays = await _outlayRepository.GetOutlaysByFilter(outlayFilter);
         return outlays;
     }
 

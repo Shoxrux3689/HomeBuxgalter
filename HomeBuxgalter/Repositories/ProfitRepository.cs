@@ -29,11 +29,6 @@ public class ProfitRepository : IProfitRepository<Profit, int>
         return true;
     }
 
-    public async Task<List<Profit>?> GetAllAsync()
-    {
-        return await _appDbContext.Profits.ToListAsync();
-    }
-
     public async Task<Profit?> GetByIdAsync(int id)
     {
         return await _appDbContext.Profits.FirstOrDefaultAsync(x => x.Id == id);
@@ -46,7 +41,7 @@ public class ProfitRepository : IProfitRepository<Profit, int>
         return true;
     }
 
-    public async Task<List<Profit>> GetProfitsByFilter(ProfitFilter profitFilter)
+    public async Task<List<Profit>?> GetProfitsByFilter(ProfitFilter profitFilter)
     {
         var query = _appDbContext.Profits.AsQueryable();
         //if (profitFilter.StartAmount != 0 && profitFilter.EndAmount != null)

@@ -7,9 +7,9 @@ namespace HomeBuxgalter.Managers;
 
 public class OutlayCategoryManager : ICategoryManager<OutlayCategory, CreateOutlayCategory, short>
 {
-    private readonly IGenericRepository<OutlayCategory, short> _outlayCategoryRepository;
+    private readonly ICategoryRepository<OutlayCategory, short> _outlayCategoryRepository;
 
-    public OutlayCategoryManager(IGenericRepository<OutlayCategory, short> outlayCategoryRepository)
+    public OutlayCategoryManager(ICategoryRepository<OutlayCategory, short> outlayCategoryRepository)
     {
         _outlayCategoryRepository = outlayCategoryRepository;
     }

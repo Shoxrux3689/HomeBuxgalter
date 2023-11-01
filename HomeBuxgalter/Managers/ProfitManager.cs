@@ -1,4 +1,6 @@
-﻿using HomeBuxgalter.Entities;
+﻿using HomeBuxgalter.Controllers;
+using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
 using HomeBuxgalter.Models.ProfitModels;
@@ -28,9 +30,9 @@ public class ProfitManager : IProfitManager<Profit, CreateProfitModel, int>
         return profit.Id;
     }
 
-    public async Task<List<Profit>?> GetAllAsync()
+    public async Task<List<Profit>?> GetProfitsAsync(ProfitFilter profitFilter)
     {
-        var profits = await _profitRepository.GetAllAsync();
+        var profits = await _profitRepository.GetProfitsByFilter(profitFilter);
         return profits;
     }
 

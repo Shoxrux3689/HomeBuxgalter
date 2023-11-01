@@ -29,18 +29,12 @@ public class OutlayRepository : IOutlayRepository<Outlay, int>
         return true;
     }
 
-    public async Task<List<Outlay>?> GetAllAsync()
-    {
-        var outlays = await _appDbContext.Outlays.ToListAsync();
-        return outlays;
-    }
-
     public async Task<Outlay?> GetByIdAsync(int id)
     {
         return await _appDbContext.Outlays.FirstOrDefaultAsync(o => o.Id == id);
     }
 
-    public async Task<List<Outlay>> GetOutlaysByFilter(OutlayFilter outlayFilter)
+    public async Task<List<Outlay>?> GetOutlaysByFilter(OutlayFilter outlayFilter)
     {
         var query = _appDbContext.Outlays.AsQueryable();
         //if (outlayFilter.StartAmount != 0 && outlayFilter.EndAmount != null)

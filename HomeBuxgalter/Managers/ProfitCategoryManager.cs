@@ -7,9 +7,9 @@ namespace HomeBuxgalter.Managers;
 
 public class ProfitCategoryManager : ICategoryManager<ProfitCategory, CreateProfitCategory, short>
 {
-    private readonly IGenericRepository<ProfitCategory, short> _profitCategoryRepository;
+    private readonly ICategoryRepository<ProfitCategory, short> _profitCategoryRepository;
 
-    public ProfitCategoryManager(IGenericRepository<ProfitCategory, short> profitCategoryRepository)
+    public ProfitCategoryManager(ICategoryRepository<ProfitCategory, short> profitCategoryRepository)
     {
         _profitCategoryRepository = profitCategoryRepository;
     }
