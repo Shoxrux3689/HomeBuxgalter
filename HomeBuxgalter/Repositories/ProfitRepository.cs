@@ -50,6 +50,8 @@ public class ProfitRepository : IProfitRepository<Profit, int>
             query = query.Where(o => o.Amount >= profitFilter.StartAmount);
         if (profitFilter.StartAmount == 0 && profitFilter.EndAmount != null)
             query = query.Where(o => o.Amount <= profitFilter.EndAmount);
+        if (!string.IsNullOrEmpty(profitFilter.CategoryName))
+            query = query.Where(o => o.Category.Contains(profitFilter.CategoryName));
 
         query = query.Where(o => o.Date >= profitFilter.StartDate && o.Date <= profitFilter.EndDate);
 

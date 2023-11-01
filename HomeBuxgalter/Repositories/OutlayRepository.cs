@@ -43,6 +43,8 @@ public class OutlayRepository : IOutlayRepository<Outlay, int>
             query = query.Where(o => o.Amount >= outlayFilter.StartAmount);
         if (outlayFilter.StartAmount == 0 && outlayFilter.EndAmount != null)
             query = query.Where(o => o.Amount <= outlayFilter.EndAmount);
+        if (!string.IsNullOrEmpty(outlayFilter.CategoryName))
+            query = query.Where(o => o.Category.Contains(outlayFilter.CategoryName));
 
         query = query.Where(o => o.Date >= outlayFilter.StartDate && o.Date <= outlayFilter.EndDate);
 
