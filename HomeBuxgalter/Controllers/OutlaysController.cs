@@ -15,10 +15,10 @@ namespace HomeBuxgalter.Controllers;
 public class OutlaysController : ControllerBase
 {
     private readonly IOutlayManager<Outlay, CreateOutlayModel, int> _outlayManager;
-    private readonly IGenericManager<OutlayCategory, CreateOutlayCategory, short> _categoryManager;
+    private readonly ICategoryManager<OutlayCategory, CreateOutlayCategory, short> _categoryManager;
     public OutlaysController(
         IOutlayManager<Outlay, CreateOutlayModel, int> 
-        outlayManager, IGenericManager<OutlayCategory, CreateOutlayCategory, short> categoryManager)
+        outlayManager, ICategoryManager<OutlayCategory, CreateOutlayCategory, short> categoryManager)
     {
         _outlayManager = outlayManager;
         _categoryManager = categoryManager;

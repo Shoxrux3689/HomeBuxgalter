@@ -14,11 +14,11 @@ namespace HomeBuxgalter.Controllers;
 public class ProfitsController : ControllerBase
 {
     private readonly IProfitManager<Profit, CreateProfitModel, int> _profitManager;
-    private readonly IGenericManager<ProfitCategory, CreateProfitCategory, short> _categoryManager;
+    private readonly ICategoryManager<ProfitCategory, CreateProfitCategory, short> _categoryManager;
 
     public ProfitsController(
         IProfitManager<Profit, CreateProfitModel, int> profitManager, 
-        IGenericManager<ProfitCategory, CreateProfitCategory, short> genericManager)
+        ICategoryManager<ProfitCategory, CreateProfitCategory, short> genericManager)
     {
         _profitManager = profitManager;
         _categoryManager = genericManager;
@@ -38,6 +38,7 @@ public class ProfitsController : ControllerBase
             return BadRequest("Qayta urinib ko'ring");
         }
     }
+
     [HttpGet]
     public async Task<IActionResult> GetProfits([FromQuery] ProfitFilter profitFilter)
     {

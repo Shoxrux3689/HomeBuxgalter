@@ -11,7 +11,42 @@
 }
 else
 {
-    
+
+    <div class="row form-group" style="display: flex; margin-top: -40px">
+        <div class="form-group row g-3" style="border-radius: 25px;
+    margin-top: 1rem;
+    padding: 2rem;">
+
+            <EditForm Model="@_filter" OnValidSubmit="@GetOutlays" style="display:grid;align-items: center; gap: 20px; grid-template-columns: auto auto auto auto">
+                <div>
+                    <label for="CategoryName">Category Name</label>
+                    <InputText class="form-control" @bind-Value="@_filter.CategoryName" />
+                </div>
+
+                <div>
+                    <label for="StartAmount">Start Amount</label>
+                    <InputNumber class="form-control" @bind-Value="@_filter.StartAmount" />
+                </div>
+
+                <div>
+                    <label for="EndAmount">End Amount</label>
+                    <InputNumber class="form-control" @bind-Value="@_filter.EndAmount" />
+                </div>
+
+                <div>
+                    <label for="StartDate">StartDate</label>
+                    <InputDate placeholder="StartDate" class="form-control" @bind-Value="@_filter.StartDate" />
+                </div>
+
+                <div>
+                    <label for="EndDate">EndDate</label>
+                    <InputDate placeholder="EndDate" class="form-control" @bind-Value="@_filter.EndDate" />
+                </div>
+
+                <button type="submit" style="height: 37px; width: 60px; margin-top:20px" class="btn btn-primary">Find</button>
+            </EditForm>
+        </div>
+    </div>
     
     <div style="text-align: right; margin-top:auto">
         <a class="btn btn-success" href="/outlays/create">Create</a>
@@ -30,7 +65,7 @@ else
             @foreach (var profit in _outlayList)
             {
                 <tr>
-                    <td>@profit!.Date.ToShortDateString()</td>
+                    <td>@profit!.Date.ToString("dd.MM.yyyy")</td>
                     <td>@profit.Category</td>
                     <td>@profit.Amount</td>
                 </tr>
@@ -41,10 +76,16 @@ else
 
 @code {
     private List<Outlay?>? _outlayList { get; set; } = new();
+    private Filter _filter { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        _outlayList = await _requestManager.Get<List<Outlay?>?>($"/api/outlays");
+        await GetOutlays();
+    }
+
+    private async Task GetOutlays()
+    {
+        _outlayList = await _requestManager.Get<List<Outlay?>?>($"/api/outlays?{_filter.ToString}");
     }
 }
 
