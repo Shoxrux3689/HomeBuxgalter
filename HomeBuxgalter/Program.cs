@@ -20,10 +20,10 @@ builder.Services.AddScoped<IOutlayRepository<Outlay, int>, OutlayRepository>();
 builder.Services.AddScoped<IProfitManager<Profit, CreateProfitModel, int>, ProfitManager>();
 builder.Services.AddScoped<IProfitRepository<Profit, int>, ProfitRepository>();
 builder.Services.AddScoped<IAccountingManager, AccountingManager>();
-builder.Services.AddScoped<IGenericRepository<OutlayCategory, short>, OutlayCategoryRepository>();
-builder.Services.AddScoped<IGenericRepository<ProfitCategory, short>, ProfitCategoryRepository>();
-builder.Services.AddScoped<IGenericManager<OutlayCategory, CreateOutlayCategory, short>, OutlayCategoryManager>();
-builder.Services.AddScoped<IGenericManager<ProfitCategory, CreateProfitCategory, short>, ProfitCategoryManager>();
+builder.Services.AddScoped<ICategoryRepository<OutlayCategory, short>, OutlayCategoryRepository>();
+builder.Services.AddScoped<ICategoryRepository<ProfitCategory, short>, ProfitCategoryRepository>();
+builder.Services.AddScoped<ICategoryManager<OutlayCategory, CreateOutlayCategory, short>, OutlayCategoryManager>();
+builder.Services.AddScoped<ICategoryManager<ProfitCategory, CreateProfitCategory, short>, ProfitCategoryManager>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

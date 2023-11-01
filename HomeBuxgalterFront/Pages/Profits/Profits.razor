@@ -17,23 +17,27 @@ else
     margin-top: 1rem;
     padding: 2rem;">
 
-        <EditForm Model="@_filter" OnValidSubmit="@GetReportsByFilter" style="display:grid;align-items: center; gap: 20px; grid-template-columns: auto auto auto auto">
+        <EditForm Model="@_filter" OnValidSubmit="@GetProfits" style="display:grid;align-items: center; gap: 20px; grid-template-columns: auto auto auto auto">
             <div>
-                <label for="ByWhichTime">ByWhichTime</label>
-                <InputSelect class="form-control" @bind-Value="@AccountingFilter.ByWhichTime">
-                    <option style="display:none">Choose...</option>
-                    @{
-                        for (int i = 0; i <= (int)EBy.Year; i++)
-                        {
-                            <option value="@((EBy)i)">@((EBy)i)</option>
-                        }
-                    }
-                </InputSelect>
+                <label for="CategoryName">Category Name</label>
+                <InputText class="form-control" @bind-Value="@_filter.CategoryName"/>
             </div>
+
+            <div>
+                <label for="StartAmount">Start Amount</label>
+                <InputNumber class="form-control" @bind-Value="@_filter.StartAmount"/>
+            </div>
+
+            <div>
+                    <label for="EndAmount">End Amount</label>
+                <InputNumber class="form-control" @bind-Value="@_filter.EndAmount"/>
+            </div>
+
             <div>
                 <label for="StartDate">StartDate</label>
                 <InputDate placeholder="StartDate" class="form-control" @bind-Value="@_filter.StartDate" />
             </div>
+
             <div>
                 <label for="EndDate">EndDate</label>
                 <InputDate placeholder="EndDate" class="form-control" @bind-Value="@_filter.EndDate" />
@@ -61,7 +65,7 @@ else
             @foreach (var profit in _profitList)
         {
                    <tr>
-                        <td>@profit!.Date.ToShortDateString()</td>
+                        <td>@profit!.Date.ToString("dd.MM.yyyy")</td>
                         <td>@profit.Category</td>
                         <td>@profit.Amount</td>
                    </tr>
@@ -76,11 +80,11 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        
+        await GetProfits();
     }
 
     private async Task GetProfits()
     {
-        _profitList = await _requestManager.Get<List<Profit?>?>($"/api/profits");
+        _profitList = await _requestManager.Get<List<Profit?>?>($"/api/profits?{_filter.ToString()}");
     }
 }

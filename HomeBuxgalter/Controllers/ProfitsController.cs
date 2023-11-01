@@ -43,7 +43,7 @@ public class ProfitsController : ControllerBase
     {
         try
         {
-            var profits = await _profitManager.GetAllAsync();
+            var profits = await _profitManager.GetProfitsAsync(profitFilter);
             return Ok(profits);
         }
         catch (Exception)

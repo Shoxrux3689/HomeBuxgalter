@@ -43,7 +43,7 @@ public class OutlaysController : ControllerBase
     {
         try
         {
-            var outlays = await _outlayManager.GetAllAsync();
+            var outlays = await _outlayManager.GetOutlaysAsync(outlayFilter);
             return Ok(outlays);
         }
         catch (Exception)
