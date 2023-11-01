@@ -5,7 +5,7 @@ using HomeBuxgalter.Repositories.Interfaces;
 
 namespace HomeBuxgalter.Managers;
 
-public class OutlayCategoryManager : IGenericManager<OutlayCategory, CreateOutlayCategory, short>
+public class OutlayCategoryManager : ICategoryManager<OutlayCategory, CreateOutlayCategory, short>
 {
     private readonly IGenericRepository<OutlayCategory, short> _outlayCategoryRepository;
 

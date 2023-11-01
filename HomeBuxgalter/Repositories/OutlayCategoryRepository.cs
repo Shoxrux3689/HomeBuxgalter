@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeBuxgalter.Repositories;
 
-public class OutlayCategoryRepository : IGenericRepository<OutlayCategory, short>
+public class OutlayCategoryRepository : ICategoryRepository<OutlayCategory, short>
 {
     private readonly AppDbContext _appDbContext;
 

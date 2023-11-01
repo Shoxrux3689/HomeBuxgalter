@@ -5,7 +5,7 @@ using HomeBuxgalter.Repositories.Interfaces;
 
 namespace HomeBuxgalter.Managers;
 
-public class ProfitCategoryManager : IGenericManager<ProfitCategory, CreateProfitCategory, short>
+public class ProfitCategoryManager : ICategoryManager<ProfitCategory, CreateProfitCategory, short>
 {
     private readonly IGenericRepository<ProfitCategory, short> _profitCategoryRepository;
 
