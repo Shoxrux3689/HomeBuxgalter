@@ -1,4 +1,5 @@
 ﻿using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters;
 using HomeBuxgalter.Managers;
 using HomeBuxgalter.Managers.Interfaces;
 using HomeBuxgalter.Models;
@@ -38,7 +39,7 @@ public class ProfitsController : ControllerBase
         }
     }
     [HttpGet]
-    public async Task<IActionResult> GetProfits()
+    public async Task<IActionResult> GetProfits([FromQuery] ProfitFilter profitFilter)
     {
         try
         {

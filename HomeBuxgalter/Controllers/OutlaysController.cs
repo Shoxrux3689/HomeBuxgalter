@@ -1,4 +1,5 @@
 ﻿using HomeBuxgalter.Entities;
+using HomeBuxgalter.Filters;
 using HomeBuxgalter.Filters.Enums;
 using HomeBuxgalter.Managers;
 using HomeBuxgalter.Managers.Interfaces;
@@ -38,7 +39,7 @@ public class OutlaysController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetOutlays()
+    public async Task<IActionResult> GetOutlays([FromQuery] OutlayFilter outlayFilter)
     {
         try
         {
