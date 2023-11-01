@@ -44,12 +44,12 @@ public class ProfitRepository : IProfitRepository<Profit, int>
     public async Task<List<Profit>?> GetProfitsByFilter(ProfitFilter profitFilter)
     {
         var query = _appDbContext.Profits.AsQueryable();
-        //if (profitFilter.StartAmount != 0 && profitFilter.EndAmount != null)
-        //    query = query.Where(o => o.Amount >= profitFilter.StartAmount && o.Amount <= profitFilter.EndAmount);
-        //if (profitFilter.StartAmount != 0 && profitFilter.EndAmount == null)
-        //    query = query.Where(o => o.Amount >= profitFilter.StartAmount);
-        //if (profitFilter.StartAmount == 0 && profitFilter.EndAmount != null)
-        //    query = query.Where(o => o.Amount <= profitFilter.EndAmount);
+        if (profitFilter.StartAmount != 0 && profitFilter.EndAmount != null)
+            query = query.Where(o => o.Amount >= profitFilter.StartAmount && o.Amount <= profitFilter.EndAmount);
+        if (profitFilter.StartAmount != 0 && profitFilter.EndAmount == null)
+            query = query.Where(o => o.Amount >= profitFilter.StartAmount);
+        if (profitFilter.StartAmount == 0 && profitFilter.EndAmount != null)
+            query = query.Where(o => o.Amount <= profitFilter.EndAmount);
 
         query = query.Where(o => o.Date >= profitFilter.StartDate && o.Date <= profitFilter.EndDate);
 

@@ -37,12 +37,12 @@ public class OutlayRepository : IOutlayRepository<Outlay, int>
     public async Task<List<Outlay>?> GetOutlaysByFilter(OutlayFilter outlayFilter)
     {
         var query = _appDbContext.Outlays.AsQueryable();
-        //if (outlayFilter.StartAmount != 0 && outlayFilter.EndAmount != null)
-        //    query = query.Where(o => o.Amount >= outlayFilter.StartAmount && o.Amount <= outlayFilter.EndAmount);
-        //if (outlayFilter.StartAmount != 0 && outlayFilter.EndAmount == null)
-        //    query = query.Where(o => o.Amount >= outlayFilter.StartAmount);
-        //if (outlayFilter.StartAmount == 0 && outlayFilter.EndAmount != null)
-        //    query = query.Where(o => o.Amount <= outlayFilter.EndAmount);
+        if (outlayFilter.StartAmount != 0 && outlayFilter.EndAmount != null)
+            query = query.Where(o => o.Amount >= outlayFilter.StartAmount && o.Amount <= outlayFilter.EndAmount);
+        if (outlayFilter.StartAmount != 0 && outlayFilter.EndAmount == null)
+            query = query.Where(o => o.Amount >= outlayFilter.StartAmount);
+        if (outlayFilter.StartAmount == 0 && outlayFilter.EndAmount != null)
+            query = query.Where(o => o.Amount <= outlayFilter.EndAmount);
 
         query = query.Where(o => o.Date >= outlayFilter.StartDate && o.Date <= outlayFilter.EndDate);
 
