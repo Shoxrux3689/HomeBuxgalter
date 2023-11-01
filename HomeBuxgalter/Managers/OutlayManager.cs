@@ -1,7 +1,6 @@
 ﻿using HomeBuxgalter.Entities;
 using HomeBuxgalter.Filters;
 using HomeBuxgalter.Managers.Interfaces;
-using HomeBuxgalter.Models;
 using HomeBuxgalter.Models.OutlayModels;
 using HomeBuxgalter.Repositories.Interfaces;
 
@@ -31,6 +30,10 @@ public class OutlayManager : IOutlayManager<Outlay, CreateOutlayModel, int>
 
     public async Task<List<Outlay>?> GetOutlaysAsync(OutlayFilter outlayFilter)
     {
+        if (outlayFilter.StartDate > outlayFilter.EndDate || outlayFilter.StartAmount >= outlayFilter.EndAmount)
+        {
+            throw new Exception("Filterni to'g'ri tanlang!");
+        }
         var outlays = await _outlayRepository.GetOutlaysByFilter(outlayFilter);
         return outlays;
     }

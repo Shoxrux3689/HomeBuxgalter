@@ -85,7 +85,7 @@ else
 
     private async Task GetOutlays()
     {
-        _outlayList = await _requestManager.Get<List<Outlay?>?>($"/api/outlays?{_filter.ToString}");
+        _outlayList = await _requestManager.Get<List<Outlay?>?>($"/api/outlays?{_filter.ToString()}");
     }
 }
 

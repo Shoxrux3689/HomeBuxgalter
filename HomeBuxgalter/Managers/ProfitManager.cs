@@ -32,6 +32,10 @@ public class ProfitManager : IProfitManager<Profit, CreateProfitModel, int>
 
     public async Task<List<Profit>?> GetProfitsAsync(ProfitFilter profitFilter)
     {
+        if (profitFilter.StartDate > profitFilter.EndDate || profitFilter.StartAmount >= profitFilter.EndAmount)
+        {
+            throw new Exception("Filterni to'g'ri tanlang!");
+        }
         var profits = await _profitRepository.GetProfitsByFilter(profitFilter);
         return profits;
     }
