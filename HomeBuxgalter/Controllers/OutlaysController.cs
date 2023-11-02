@@ -59,7 +59,6 @@ public class OutlaysController : ControllerBase
         {
             var outlay = await _outlayManager.GetAsync(id);
             return outlay == null ? NotFound("Bunday ma'lumot topilmadi") : Ok(outlay);
-            
         }
         catch (Exception)
         {

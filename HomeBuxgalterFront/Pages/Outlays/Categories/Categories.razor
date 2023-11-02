@@ -6,12 +6,12 @@
 
 @if (_outlayCategories == null)
 {
-            <p><em>Loading...</em></p>
+    <p><em>Loading...</em></p>
 }
 else
 {
-
-    <div style="text-align: right; margin-top:auto">
+    <div style="display: flex; justify-content: space-between">
+        <a class="btn btn-danger" href="/outlays">Back</a>
         <a class="btn btn-success" href="/outlays/categories/create-category">Create</a>
     </div>
             <table class="table">
