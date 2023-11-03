@@ -27,6 +27,7 @@ builder.Services.AddScoped<ICategoryManager<ProfitCategory, CreateProfitCategory
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
+    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
     options.UseNpgsql(builder.Configuration.GetConnectionString("AppDbContext"));
 });
 

@@ -16,19 +16,19 @@ public class AppDbContext : DbContext
     {
         modelBuilder.Entity<ProfitCategory>().HasData(new List<ProfitCategory>()
         {
-            new ProfitCategory() { Name = "Заработная плата"},
-            new ProfitCategory() { Name = "Дохода с сдачи в аренду недвижимости"},
-            new ProfitCategory() { Name = "Иные доходы"},
+            new ProfitCategory() { Id = 1, Name = "Заработная плата"},
+            new ProfitCategory() { Id = 2, Name = "Дохода с сдачи в аренду недвижимости"},
+            new ProfitCategory() { Id = 3, Name = "Иные доходы"},
         });
 
         modelBuilder.Entity<OutlayCategory>().HasData(new List<OutlayCategory>()
         {
-            new OutlayCategory() { Name = "Продукты питания"},
-            new OutlayCategory() { Name = "Транспорт"},
-            new OutlayCategory() { Name = "Мобильная связь"},
-            new OutlayCategory() { Name = "Интернет"},
-            new OutlayCategory() { Name = "Развлечения"},
-            new OutlayCategory() { Name = "Другое"}
+            new OutlayCategory() { Id = 1, Name = "Продукты питания"},
+            new OutlayCategory() { Id = 2, Name = "Транспорт"},
+            new OutlayCategory() { Id = 3, Name = "Мобильная связь"},
+            new OutlayCategory() { Id = 4, Name = "Интернет"},
+            new OutlayCategory() { Id = 5, Name = "Развлечения"},
+            new OutlayCategory() { Id = 6, Name = "Другое"}
         });
     }
 }

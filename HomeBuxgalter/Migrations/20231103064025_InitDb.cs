@@ -4,6 +4,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace HomeBuxgalter.Migrations
 {
     /// <inheritdoc />
@@ -68,6 +70,29 @@ namespace HomeBuxgalter.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profits", x => x.Id);
+                });
+
+            migrationBuilder.InsertData(
+                table: "OutlayCategories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { (short)1, "Продукты питания" },
+                    { (short)2, "Транспорт" },
+                    { (short)3, "Мобильная связь" },
+                    { (short)4, "Интернет" },
+                    { (short)5, "Развлечения" },
+                    { (short)6, "Другое" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProfitCategories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { (short)1, "Заработная плата" },
+                    { (short)2, "Дохода с сдачи в аренду недвижимости" },
+                    { (short)3, "Иные доходы" }
                 });
         }
 

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HomeBuxgalter.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231103060200_InitDb")]
+    [Migration("20231103064025_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -66,6 +66,38 @@ namespace HomeBuxgalter.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OutlayCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            Name = "Продукты питания"
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            Name = "Транспорт"
+                        },
+                        new
+                        {
+                            Id = (short)3,
+                            Name = "Мобильная связь"
+                        },
+                        new
+                        {
+                            Id = (short)4,
+                            Name = "Интернет"
+                        },
+                        new
+                        {
+                            Id = (short)5,
+                            Name = "Развлечения"
+                        },
+                        new
+                        {
+                            Id = (short)6,
+                            Name = "Другое"
+                        });
                 });
 
             modelBuilder.Entity("HomeBuxgalter.Entities.Profit", b =>
@@ -109,6 +141,23 @@ namespace HomeBuxgalter.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProfitCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            Name = "Заработная плата"
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            Name = "Дохода с сдачи в аренду недвижимости"
+                        },
+                        new
+                        {
+                            Id = (short)3,
+                            Name = "Иные доходы"
+                        });
                 });
 #pragma warning restore 612, 618
         }
