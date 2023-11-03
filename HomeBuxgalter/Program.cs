@@ -27,8 +27,7 @@ builder.Services.AddScoped<ICategoryManager<ProfitCategory, CreateProfitCategory
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseInMemoryDatabase("MyDb");
-    //options.UseNpgsql(builder.Configuration.GetConnectionString("AppDbContext"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("AppDbContext"));
 });
 
 var app = builder.Build();
