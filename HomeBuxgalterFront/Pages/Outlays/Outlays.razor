@@ -58,15 +58,17 @@ else
                 <th>Date</th>
                 <th>Category</th>
                 <th>Amount</th>
+                <th>Comment</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var profit in _outlayList)
             {
                 <tr>
-                    <td>@profit!.Date.ToString("dd.MM.yyyy")</td>
+                    <td>@profit!.Date.ToString("dd.MM.yyyy HH:mm")</td>
                     <td>@profit.Category</td>
                     <td>@profit.Amount</td>
+                    <td>@profit.Comment</td>
                 </tr>
             }
         </tbody>
