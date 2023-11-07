@@ -5,7 +5,12 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeBuxgalter", "HomeBuxgalter\HomeBuxgalter.csproj", "{1AF11BDD-7B42-4E74-905F-F4EB32E9A7C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBuxgalterFront", "HomeBuxgalterFront\HomeBuxgalterFront.csproj", "{D72AF07E-F33C-4B9E-A572-FB26AC682541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeBuxgalterFront", "HomeBuxgalterFront\HomeBuxgalterFront.csproj", "{D72AF07E-F33C-4B9E-A572-FB26AC682541}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{283F45C0-4A27-4017-BFA3-AD2FA2AA8B03}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.txt = Readme.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
